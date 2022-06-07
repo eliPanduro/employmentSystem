@@ -59,10 +59,14 @@
 	</div>
 	<div>
 		<form th:action="@{/logout}" method="post">
-			<p>
-				Welcome <b>[[${#request.userPrincipal.principal.fullName}]]</b>
-			</p>
-			<input type="submit" value="Sign Out" />
+			<div class="name-user">
+				<p>
+					Welcome <b>[[${#request.userPrincipal.principal.fullName}]]</b>
+				</p>
+			</div>
+			<div class="button">
+				<input type="submit" class="btn-log-out" value="Log Out" />
+			</div>
 		</form>
 	</div>
 </div>
