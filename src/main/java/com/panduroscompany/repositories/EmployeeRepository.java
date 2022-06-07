@@ -5,11 +5,9 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-import org.springframework.stereotype.Repository;
 
 import com.panduroscompany.entity.Employee;
 
-@Repository
 public interface EmployeeRepository extends JpaRepository<Employee, Long> {
 	// to search an employee by firstname, lastname and/or position
 	@Query(value = "SELECT * FROM Employee WHERE ( firstname = :firstname OR :firstname = '' ) "
