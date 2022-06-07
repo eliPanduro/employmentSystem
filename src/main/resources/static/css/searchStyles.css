@@ -1,0 +1,83 @@
+@charset "ISO-8859-1";
+
+
+.container{
+	padding-top: 20px;
+}
+
+h1{
+	color: brown;
+	font-size: 25px;
+	margin: 14px 0px 9px;
+	text-align: center;
+	font-family:'Times New Roman', Times, serif;
+	font-style: italic;
+ }
+
+ .container .form{
+	 background-color: rgb(246, 201, 117);
+   width: 90%;
+   max-width: 300px;
+   margin: auto;
+   padding: 2px 35px;
+   padding-bottom: 30px;
+   border-radius: 5px;
+}
+.label{
+  font-style: italic;
+}
+
+.container .form .form-input{
+   background: rgb(246, 201, 117);
+   border: none;
+   outline: none;
+   border-bottom: 2px solid black;
+   width: 100%;
+   padding: 5px;
+   margin-bottom: 15px;
+   border-radius: 2px;
+   font-size: 16px;
+   color: black;
+   font-family: 'Times New Roman', Times, serif;
+}
+
+.container .form .form-input::placeholder{
+  color: rgb(86, 75, 75);
+}
+
+.container .form .btn-send{
+   width: 48%;
+   margin-top: 7px;
+   margin-left: 5px;
+   float: left;
+   font-family: 'Times New Roman', Times, serif;
+   outline: none;
+   border-radius: 3px;
+   background: #ff851b;
+   font-size: 18px;
+   border: none;
+   color: #fff;
+   padding: 10px 0;
+   cursor: pointer;
+   transition: all .5s ease;
+}
+
+.container .form .btn-clear{
+	width: 48%;
+	margin-left: 7px;
+	margin-top: 7px;
+	font-family: 'Times New Roman', Times, serif;
+	outline: none;
+	border-radius: 3px;
+	background: #ff851b;
+	font-size: 18px;
+	border: none;
+	color: #fff;
+	padding: 10px 0;
+	cursor: pointer;
+	transition: all .5s ease;
+}
+
+.container .form .btn-send:hover{
+   background-color: #fa8e2f;
+}

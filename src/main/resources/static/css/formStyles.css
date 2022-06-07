@@ -1,0 +1,70 @@
+@charset "ISO-8859-1";
+
+/*THIS IS THE FORM*/
+.container{
+	padding-top: 20px;
+	background-color: #fFFFFF;
+	opacity: 1;
+	background-image:  radial-gradient(#008080 0.9500000000000001px, transparent 0.9500000000000001px), radial-gradient(#008080 0.9500000000000001px, #fFFFFF 0.9500000000000001px);
+	background-size: 38px 38px;
+	background-position: 0 0,19px 19px;
+}
+
+h1{
+   color: brown;
+   font-size: 25px;
+   margin: 14px 0px 9px;
+   text-align: center;
+   font-family:'Times New Roman', Times, serif;
+   font-style: italic;
+}
+
+.container .form{
+	 background-color: rgb(246, 201, 117);
+    width: 90%;
+    max-width: 300px;
+    margin: auto;
+    padding: 2px 35px;
+    padding-bottom: 30px;
+    border-radius: 5px;
+}
+.label{
+   font-style: italic;
+}
+
+.container .form .form-input{
+    background: rgb(246, 201, 117);
+    border: none;
+    outline: none;
+    border-bottom: 2px solid black;
+    width: 100%;
+    padding: 5px;
+    margin-bottom: 15px;
+    border-radius: 2px;
+    font-size: 16px;
+    color: black;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.container .form .form-input::placeholder{
+   color: rgb(86, 75, 75);
+}
+
+.container .form .btn-send{
+    width: 103%;
+    margin-top: 7px;
+    font-family: 'Times New Roman', Times, serif;
+    outline: none;
+    border-radius: 3px;
+    background: #ff851b;
+    font-size: 18px;
+    border: none;
+    color: #fff;
+    padding: 10px 0;
+    cursor: pointer;
+    transition: all .5s ease;
+}
+
+.container .form .btn-send:hover{
+    background-color: #fa8e2f;
+}

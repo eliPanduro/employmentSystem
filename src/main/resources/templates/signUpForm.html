@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Registration</title>
+<script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+</head>
+<body>
+	<div>
+		<h1>User registration</h1>
+	</div>
+	<form th:action="@{/registrationProcess}" method="post" th:object="${user}">
+	<label>E-mail</label>
+	<input type="email" th:field="*{email}" required>
+	
+	<label>First Name</label>
+	<input type="text" th:field="*{firstname}" required>
+	
+	<label>Last Name</label>
+	<input type="text" th:field="*{lastname}" required>
+	
+	<label>Password</label>
+	<input type="password" th:field="*{password}" minlength="6" maxlength="15" required>
+	
+	<div>
+		<input type="submit" class="btn-send" value="Sing Up">
+	</div>
+	</form>
+
+</body>
+</html>

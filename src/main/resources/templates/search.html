@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<link href="css/searchStyles.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+	<div class="container">
+		<form class="form" th:action="@{/search}">
+			<div>
+				<h1>Search employee</h1>
+			</div>
+			<label for="firstname" class="label">First Name:</label>
+			<input type="text" class="form-input" id="firstname" name="firstName" th:value="${firstname}" placeholder="First name">						
+			
+			<label for="lastname" class="label">Last Name:</label>
+			<input type="text" class="form-input" id="lastname" name="lastName" th:value="${lastname}" placeholder="Last name">
+			
+			<label for="position" class="label">Position:</label>
+			<input type="text" class="form-input" id="position" name="position" th:value="${position}" placeholder="Position">
+			
+			<div class="buttons">
+				<input type="submit" class="btn-send" th:text="Search">
+				<input type="reset" class="btn-clear" th:text="Clear">
+			</div>
+		</form>
+	</div>
+	
+	<main class="container">
+		<table class="table">
+			<thead>
+				<tr>
+					<th scope="col">UID</th>
+					<th scope="col">First name</th>
+					<th scope="col">Middle name</th>
+					<th scope="col">Last name</th>
+					<th scope="col">Position</th>
+					<th scope="col">Birth date</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="employee : ${list}">
+					<td th:text="${employee.id}" id="id"></td>
+					<td th:text="${employee.firstname}"></td>
+					<td th:text="${employee.middlename}"></td>
+					<td th:text="${employee.lastname}"></td>
+					<td th:text="${employee.position}"></td>
+					<td th:text="${employee.birthdate}"></td>
+					<td>
+						<a class="my-btn sm">View</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</main>
+
+</body>
+</html>

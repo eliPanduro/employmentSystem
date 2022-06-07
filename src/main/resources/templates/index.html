@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Login Panduro's Company</title>
+<script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+<link th:href="@{/css/indexStyles.css}" rel="stylesheet" type="text/css">
+</head>
+<body>
+	<div class="main-box">
+		<div class="main-bar">
+			<div class="icon">
+				<img src="img/icono.png"></img>
+			</div>
+			<div class="nameCompany">
+				<img src="img/companyName.png"></img>
+			</div>
+		</div>
+		<div>
+			<h1>Welcome to Panduro's Company</h1>
+			<h3>
+				<a th:href="@{/register}">Register</a>
+			</h3>
+			<h3>
+				<a th:href="@{/login}">Login</a>
+			</h3>
+		</div>
+	</div>
+</body>
+</html>

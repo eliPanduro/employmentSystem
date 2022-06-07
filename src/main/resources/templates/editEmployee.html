@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Edit employee</title>
+<link th:href="@{/css/formStyles.css}" rel="stylesheet" type="text/css">
+</head>
+<body>
+	<div th:replace="fragments/navBar :: navbar"></div>
+	<div class="container">
+		<form class="form" action="#" th:action="@{/save}" th:object="${employee}" method="post">
+			<div>
+				<h1>Edit employee</h1>
+			</div>
+				
+			<label for="id" class="label">Id:</label>
+			<input type="text" th:field="*{id}" class="form-input" id="id" name="id" readonly>
+				
+			<label for="firstName" class="label">First Name:</label>
+			<input type="text" th:field="*{firstname}" class="form-input" id="firstName" name="firstName">
+				
+			<label for="middleName" class="label">Middle Name:</label>
+			<input type="text" th:field="*{middlename}" class="form-input" id="middleName" name="middleName">							
+				
+			<label for="lastName" class="label">Last Name:</label>
+			<input type="text" th:field="*{lastname}" class="form-input" id="lastName" name="lastName">
+				
+			<label for="birthDate" class="label">Birth Date:</label>
+			<input type="text" th:field="*{birthdate}" class="form-input" id="birthDate" name="birthDate">
+				
+			<label for="position" class="label">Position:</label>
+			<input type="text" th:field="*{position}" class="form-input" id="position" name="position">
+				
+			<div class="buttons">
+				<input type="submit" class="btn-send" value="Submit">
+				<input type="reset" class="btn-clear" value="Clear">
+			</div>
+		</form>
+	</div>
+
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>View Employee Profile</title>
+    <link th:href="@{/css/viewStyles.css}" rel="stylesheet" type="text/css">
+    </head>
+    <body>
+    <div th:replace="fragments/navBar :: navbar"></div>
+        <div class="main-table">
+            <h1>List of employees</h1>
+            <div class="table">
+                <div class="header">
+                    <div class="rowH">ID</div>
+                    <div class="rowH">First Name</div>
+                    <div class="rowH">Middle Name</div>
+                    <div class="rowH">Last Name</div>
+                    <div class="rowH">Birth Date</div>
+                    <div class="rowH">Position</div>
+                    <div class="rowH">Edit</div>
+                </div>
+                <div class="data">
+                	<div th:each="employee : ${listOfEmployees}">
+	                    <div class="row" th:text="${employee.id}"></div>
+	                    <div class="row" th:text="${employee.firstname}"></div>
+	                    <div class="row" th:text="${employee.middlename}"></div>
+	                    <div class="row" th:text="${employee.lastname}"></div>
+	                    <div class="row" th:text="${employee.birthdate}"></div>
+	                    <div class="row" th:text="${employee.position}"></div>
+	                    <div class="row">
+	                        <a th:href="@{'/edit/' + ${employee.id}}"><svg width="16" height="16">
+	                          <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+	                          <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+	                        </svg></a>
+	                    </div>
+                	</div>
+                </div>
+            </div>
+        </div>
+    </body>
+    </html>
