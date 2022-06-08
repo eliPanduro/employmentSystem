@@ -3,7 +3,6 @@ package com.panduroscompany.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,7 +11,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.panduroscompany.entity.Employee;
 import com.panduroscompany.entity.User;
@@ -70,22 +71,58 @@ public class ControllerLayer {
 		return "redirect:/home";
 	}
 	
-	// Form to search employee
-	@RequestMapping("/searchEmployee")
-	public String formSearchEmployee() {
+	// Search form
+	/*@GetMapping("/searchForm")
+	public String searchForm(Model model) {
+		model.addAttribute("employee", new Employee());
+		return "search";
+	}*/
+	
+	/*@GetMapping("/searchEmployee")
+	public String searchEmployee(@RequestParam String firstName, @RequestParam String lastName, @RequestParam String position, Model model, @ModelAttribute("employees") Employee employees ) {
+			List<Employee> employee = employeeService.buscarByFirstNameAndLastNameAndPosition(firstName, lastName, position);*/
+
+			/*List<Employee> employees1 = service.buscarFirstName(firstName);
+			
+			List<Employee> employees2 = service.buscarLastName(lastName);
+			
+			List<Employee> employees3 = service.buscarPosition(position);
+			
+			List<Employee> resultList2 = new ArrayList<Employee>(employee);
+			
+			resultList2.addAll(employees1);
+			resultList2.addAll(employees2);
+			resultList2.addAll(employees3);
+			
+			
+			resultList2 = resultList2.stream().distinct().collect(Collectors.toList());
+			
+			
+			results=resultList2.size();*/
+			//model.addAttribute("employeest",resultList2);
+			
+		/*return "search";
+		
+	}*/
+	
+
+		// _______search the employee___________
+	@RequestMapping("/search/form")
+	public String searchForm() {
 		return "search";
 	}
-		
-	// Search an employee or employees
+
+	// _______search the employee___________
 	@GetMapping("/search")
-	public String searchEmployees(Model model, @Param("firstname") String firstname, @Param("lastname") String lastname, @Param("position") String position) {
-		System.out.println(firstname);
-		System.out.println(lastname);
-		System.out.println(position);
-		List<Employee> list = employeeService.findEmployee(firstname, lastname, position);
-		System.out.println("This is the list in search: "+list);
-		model.addAttribute("list", list);
-		return "search";
+	public String searchEmpl(Model model, String fname, String lname, String pos, RedirectAttributes redirAttrs) {
+		List<Employee> list = employeeService.findEmployee(fname, lname, pos);
+		if (list != null && list.isEmpty()) {
+			redirAttrs.addFlashAttribute("empty", "0 results found.");
+			return "redirect:/home";
+		} else {
+			model.addAttribute("list", list);
+			return "search";
+		}
 	}
 
 	// List all the employees

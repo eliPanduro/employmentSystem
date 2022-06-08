@@ -1,5 +1,6 @@
 package com.panduroscompany.repositories;
 
+import java.sql.Date;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -10,12 +11,11 @@ import com.panduroscompany.entity.Employee;
 
 public interface EmployeeRepository extends JpaRepository<Employee, Long> {
 	// to search an employee by firstname, lastname and/or position
-	@Query(value = "SELECT * FROM Employee WHERE ( firstname = :firstname OR :firstname = '' ) "
+	@Query(value = "SELECT * FROM Employee "
+			+ "WHERE ( firstname = :firstname OR :firstname = '' ) "
 			+ "AND ( lastname = :lastname OR :lastname = '' ) "
 			+ "AND ( position = :position OR :position = '' ) ", nativeQuery = true)
-	List<Employee> findEmployee(@Param("firstname") String firstname,
-			@Param("lastname") String lastname, @Param("position") String position);
+	List<Employee> findEmployee(@Param("firstname") String fname, @Param("lastname") String lname, @Param("position") String pos);
 	
-	//to find an existing employee by firstname, middlename, lastname and birthdate 
-	//Employee findExistingEmployee(String firstname, String middlename, String lastname, Date birthdate);
+	//Employee findEmployeeByfirstnameAndmiddlenameAndlastnameAndbirthdate(String firstname, String middlename, String lastname, Date birthdate);
 }

@@ -4,20 +4,75 @@
 	margin: 0;
 	padding: 0;
 }
+.main-box{
+	position: relative;
+	width: 100%;
+	height: fit-content;
+}
+.square{
+	height: 62px;
+	width: 65px;
+	position: absolute;
+	left: 0;
+	top: 0;
+	background-color: black;
+}
+
+.content-index .backg img{
+	height: 100vh;
+	width: 100vh;
+}
 
 .icon img{
-	width: 85px;
-	float: left;
-	margin: 5px 0 8px 0;
+	width: 63px;
+	position: absolute;
+	top: 1px;
+	right: 105px;
 }
 
 .nameCompany img{
-	padding-top: 20px;
-	width: 150px;
+	padding-top: 9px;
+	padding-right: 5px;
+	width: 106px;
 }
 
 .main-bar{
 	display: flex;
-  	justify-content: center;
-  	background-color: rgb(241, 248, 195);
+	justify-content: right;
+	width: 100vh;
+  	width: 100%;
+  	background-color: rgb(105, 212, 223);
+}
+
+.message-welcome p{
+	position:absolute;
+	z-index:1;
+	top:120px;
+	left:50px;
+	font-family: Georgia, 'Times New Roman', Times, serif;
+	font-size: 60px;
+	color: rgb(236, 231, 182);
+}
+
+.message-welcome img{
+	position:absolute;
+	z-index:1;
+	top:195px;
+	left:75px;
+	width: 265px;
+}
+
+.message-welcome .pre{
+	position:absolute;
+	z-index:1;
+	top:230px;
+	left:75px;
+}
+
+.log-reg .img{
+	position:absolute;
+	z-index:1;
+	top: 355px;
+	right:75px;
+	width: 150px;
 }

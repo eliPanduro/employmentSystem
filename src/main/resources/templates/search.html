@@ -1,32 +1,39 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:theadh="http://www.thymeleaf.org">
+
 <head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
-<link href="css/searchStyles.css" rel="stylesheet" type="text/css">
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Search for an Employee</title>
+	<!-- Font Awesome for icons -->
+	<script src="https://kit.fontawesome.com/cf8f2989e3.js" crossorigin="anonymous"></script>
+	<!-- Google Fonts -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@300&display=swap" rel="stylesheet">
 </head>
+
 <body>
-	<div class="container">
-		<form class="form" th:action="@{/search}">
-			<div>
-				<h1>Search employee</h1>
-			</div>
-			<label for="firstname" class="label">First Name:</label>
-			<input type="text" class="form-input" id="firstname" name="firstName" th:value="${firstname}" placeholder="First name">						
-			
-			<label for="lastname" class="label">Last Name:</label>
-			<input type="text" class="form-input" id="lastname" name="lastName" th:value="${lastname}" placeholder="Last name">
-			
-			<label for="position" class="label">Position:</label>
-			<input type="text" class="form-input" id="position" name="position" th:value="${position}" placeholder="Position">
-			
-			<div class="buttons">
-				<input type="submit" class="btn-send" th:text="Search">
-				<input type="reset" class="btn-clear" th:text="Clear">
-			</div>
-		</form>
-	</div>
+	<!-- Header and search content -->
+	<header>
+		<h2 class="subtitle">Search for an Employee</h2>
+		<div>
+
+			<!-- Search form -->
+			<form th:action="@{/search}" method="GET">
+				<input type="search" placeholder="First name" aria-label="firstname"
+					th:value="${firstname}" name="fname">
+				<input type="search" placeholder="Last name" aria-label="lastname"
+					th:value="${lastname}" name="lname">
+				<input type="search" placeholder="Position" aria-label="position"
+					th:value="${position}" name="pos">
+				<button type="submit" th:text="Search"></button>
+				<button type="clear" th:text="Clean"></button>
+			</form>
+		</div>
+	</header>
 	
+	<!-- Search results -->
 	<main class="container">
 		<table class="table">
 			<thead>
@@ -47,13 +54,16 @@
 					<td th:text="${employee.lastname}"></td>
 					<td th:text="${employee.position}"></td>
 					<td th:text="${employee.birthdate}"></td>
-					<td>
-						<a class="my-btn sm">View</a>
-					</td>
 				</tr>
 			</tbody>
 		</table>
 	</main>
 
+	<!-- footer -->
+	<footer>
+		<p class="copyright">Employment System © 2022</p>
+	</footer>
+	<!-- End - footer -->
 </body>
+
 </html>

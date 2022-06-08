@@ -9,6 +9,7 @@
 <body>
 	<div class="main-box">
 		<div class="main-bar">
+			<div class="square">.</div>
 			<div class="icon">
 				<img src="img/icono.png"></img>
 			</div>
@@ -16,14 +17,21 @@
 				<img src="img/companyName.png"></img>
 			</div>
 		</div>
-		<div>
-			<h1>Welcome to Panduro's Company</h1>
-			<h3>
+		<div class="content-index">
+			<img class="backg" src="img/backgroundIndex.jpeg"></img>
+			<div class="message-welcome">
+				<p>Welcome to</p>
+				<img src="img/companyName.png"></img>
+			</div>
+			<div class="purpose">
+				<pre>Panduro's Company is more than a company that generates
+opportunities and growth, we are a family!</pre>
+			</div>
+			<div class="log-reg">
 				<a th:href="@{/register}">Register</a>
-			</h3>
-			<h3>
 				<a th:href="@{/login}">Login</a>
-			</h3>
+				<img src="img/icono.png"></img>
+			</div>			
 		</div>
 	</div>
 </body>

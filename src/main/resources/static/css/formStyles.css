@@ -2,7 +2,7 @@
 
 /*THIS IS THE FORM*/
 .container{
-	padding-top: 20px;
+	padding-top: 16px;
 	background-color: #fFFFFF;
 	opacity: 1;
 	background-image:  radial-gradient(#008080 0.9500000000000001px, transparent 0.9500000000000001px), radial-gradient(#008080 0.9500000000000001px, #fFFFFF 0.9500000000000001px);
@@ -11,7 +11,7 @@
 }
 
 h1{
-   color: brown;
+   color: white;
    font-size: 25px;
    margin: 14px 0px 9px;
    text-align: center;
@@ -20,7 +20,7 @@ h1{
 }
 
 .container .form{
-	 background-color: rgb(246, 201, 117);
+	background-color: rgb(105, 212, 223);
     width: 90%;
     max-width: 300px;
     margin: auto;
@@ -33,7 +33,7 @@ h1{
 }
 
 .container .form .form-input{
-    background: rgb(246, 201, 117);
+    background: rgb(105, 212, 223);
     border: none;
     outline: none;
     border-bottom: 2px solid black;
@@ -47,7 +47,7 @@ h1{
 }
 
 .container .form .form-input::placeholder{
-   color: rgb(86, 75, 75);
+   color: rgb(48, 43, 43);
 }
 
 .container .form .btn-send{
@@ -56,15 +56,16 @@ h1{
     font-family: 'Times New Roman', Times, serif;
     outline: none;
     border-radius: 3px;
-    background: #ff851b;
+    background: #eded99;
     font-size: 18px;
     border: none;
-    color: #fff;
+    color: black;
     padding: 10px 0;
     cursor: pointer;
     transition: all .5s ease;
 }
 
 .container .form .btn-send:hover{
-    background-color: #fa8e2f;
+    background-color: #f2a15b;
+    color: white;
 }
