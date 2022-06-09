@@ -3,29 +3,38 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Registration</title>
+<link th:href="@{/css/registerStyles.css}" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
 </head>
 <body>
-	<div>
-		<h1>User registration</h1>
+	<div class="main-bar">
+		<div class="icon">
+			<img src="img/icono.png"></img>
+		</div>
+		<div class="company-name">
+			<img src="img/companyName.png"></img>
+		</div>
 	</div>
-	<form th:action="@{/registrationProcess}" method="post" th:object="${user}">
-	<label>E-mail</label>
-	<input type="email" th:field="*{email}" required>
-	
-	<label>First Name</label>
-	<input type="text" th:field="*{firstname}" required>
-	
-	<label>Last Name</label>
-	<input type="text" th:field="*{lastname}" required>
-	
-	<label>Password</label>
-	<input type="password" th:field="*{password}" minlength="6" maxlength="15" required>
-	
-	<div>
-		<input type="submit" class="btn-send" value="Sing Up">
-	</div>
-	</form>
+	<div class="container">
+		<form class="form" th:action="@{/registrationProcess}" method="post" th:object="${user}">
+			<div>
+				<h1>User registration</h1>
+			</div>
+			<label for="email" class="label">E-mail</label>
+			<input type="email" th:field="*{email}" class="form-input" id="email" name="email" placeholder="Email" required>
+			
+			<label for="firstName" class="label">First Name</label>
+			<input type="text" th:field="*{firstname}" class="form-input" id="firstName" name="firstName" placeholder="First name" required>
+				
+			<label for="lastName" class="label">Last Name</label>
+			<input type="text" th:field="*{lastname}" class="form-input" id="lastName" name="lastName" placeholder="Last name" required>
+				
+			<label for="password" class="label">Password</label>
+			<input type="password" th:field="*{password}" class="form-input" id="password" name="password" placeholder="Password"
+			minlength="6" maxlength="15" required>
 
+			<input type="submit" class="btn-send" value="Sing Up">
+		</form>
+	</div>
 </body>
 </html>

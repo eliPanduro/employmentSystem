@@ -1,0 +1,102 @@
+@charset "ISO-8859-1";
+
+/*Styles top bar, contains logo and company name*/
+*{
+	margin: 0;
+	padding: 0;
+}
+
+body{
+	height: 100vh;
+	overflow: hidden;
+}
+
+.icon img{
+	width: 85px;
+	float: left;
+	margin: 5px 0 8px 0;
+}
+
+.company-name img{
+	padding-top: 20px;
+	width: 150px;
+}
+
+.main-bar{
+	display: flex;
+  	justify-content: center;
+  	background-color: rgb(241, 248, 195);
+}
+
+/*Styles form*/
+.container{
+	min-height: 100%;
+	width: 100%;
+	margin: auto;
+	padding-top: 16px;
+	background-color: #fFFFFF;
+	opacity: 1;
+	background-image:  radial-gradient(#008080 0.9500000000000001px, transparent 0.9500000000000001px), radial-gradient(#008080 0.9500000000000001px, #fFFFFF 0.9500000000000001px);
+	background-size: 38px 38px;
+	background-position: 0 0,19px 19px;
+}
+
+h1{
+   color: white;
+   font-size: 25px;
+   margin: 14px 0px 9px;
+   text-align: center;
+   font-family:'Times New Roman', Times, serif;
+   font-style: italic;
+}
+
+.container .form{
+	background-color: rgb(105, 212, 223);
+    width: 90%;
+    max-width: 300px;
+    margin: auto;
+    padding: 2px 35px;
+    padding-bottom: 30px;
+    border-radius: 5px;
+}
+.label{
+   color: #dba206;
+}
+
+.container .form .form-input{
+    background: rgb(105, 212, 223);
+    border: none;
+    outline: none;
+    border-bottom: 2px solid black;
+    width: 100%;
+    padding: 5px;
+    margin-bottom: 15px;
+    border-radius: 2px;
+    font-size: 16px;
+    color: black;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.container .form .form-input::placeholder{
+   color: rgb(48, 43, 43);
+}
+
+.container .form .btn-send{
+    width: 103%;
+    margin-top: 7px;
+    font-family: 'Times New Roman', Times, serif;
+    outline: none;
+    border-radius: 3px;
+    background: #eded99;
+    font-size: 18px;
+    border: none;
+    color: black;
+    padding: 10px 0;
+    cursor: pointer;
+    transition: all .5s ease;
+}
+
+.container .form .btn-send:hover{
+    background-color: #f2a15b;
+    color: white;
+}
