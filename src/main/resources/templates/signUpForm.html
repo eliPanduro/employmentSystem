@@ -24,10 +24,10 @@
 			<input type="email" th:field="*{email}" class="form-input" id="email" name="email" placeholder="Email" required>
 			
 			<label for="firstName" class="label">First Name</label>
-			<input type="text" th:field="*{firstname}" class="form-input" id="firstName" name="firstName" placeholder="First name" required>
+			<input type="text" th:field="*{firstname}" class="form-input" id="firstName" name="firstName" placeholder="First name" minlength="2" required>
 				
 			<label for="lastName" class="label">Last Name</label>
-			<input type="text" th:field="*{lastname}" class="form-input" id="lastName" name="lastName" placeholder="Last name" required>
+			<input type="text" th:field="*{lastname}" class="form-input" id="lastName" name="lastName" placeholder="Last name" minlength="2" required>
 				
 			<label for="password" class="label">Password</label>
 			<input type="password" th:field="*{password}" class="form-input" id="password" name="password" placeholder="Password"
