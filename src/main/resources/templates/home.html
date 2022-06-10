@@ -2,14 +2,25 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="ISO-8859-1">
-<title>Welcom to the system!</title>
-<link th:href="@{/css/navBarStyles.css}" rel="stylesheet" type="text/css">
+<title>Welcome to the system!</title>
+<link th:href="@{/css/homeStyles.css}" rel="stylesheet" type="text/css">
 </head>
 <body>
 	<div th:replace="fragments/navBar :: navbar"></div>
-	<div class="info">
-		<p>historia</p>
-		<footer>This is a footer</footer>
+	<div class="main-container">
+		<div class="container">
+			<div class="image">
+				<img src="img/welcomeHome.png"></img>
+			</div>
+			<div class="msg">
+				<pre>Company founded in 1980.
+		
+Motivated employees significantly
+contribute to the increase in quality
+of services and a good work environment.
+				</pre>
+			</div>
+		</div>
 	</div>
 </body>
 </html>

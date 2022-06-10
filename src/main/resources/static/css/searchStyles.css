@@ -1,83 +1,136 @@
 @charset "ISO-8859-1";
 
-
+/*Styles - search form*/
 .container{
-	padding-top: 20px;
+	display: flex;
+	padding-top: 14px;
+	background-color: #fFFFFF;
+	opacity: 1;
+	background-image:  radial-gradient(#008080 0.9500000000000001px, transparent 0.9500000000000001px), radial-gradient(#008080 0.9500000000000001px, #fFFFFF 0.9500000000000001px);
+	background-size: 38px 38px;
+	background-position: 0 0,19px 19px;
 }
 
 h1{
-	color: brown;
-	font-size: 25px;
-	margin: 14px 0px 9px;
-	text-align: center;
-	font-family:'Times New Roman', Times, serif;
-	font-style: italic;
- }
-
- .container .form{
-	 background-color: rgb(246, 201, 117);
-   width: 90%;
-   max-width: 300px;
-   margin: auto;
-   padding: 2px 35px;
-   padding-bottom: 30px;
-   border-radius: 5px;
+   color: white;
+   font-size: 25px;
+   margin: 14px 0px 9px;
+   text-align: center;
+   font-family:'Times New Roman', Times, serif;
+   font-style: italic;
 }
-.label{
-  font-style: italic;
+
+.container .form{
+	background-color: rgb(105, 212, 223);
+    width: 90%;
+    max-width: 300px;
+    margin: auto;
+    padding: 2px 35px;
+    padding-bottom: 25px;
+    border-radius: 5px;
 }
 
 .container .form .form-input{
-   background: rgb(246, 201, 117);
-   border: none;
-   outline: none;
-   border-bottom: 2px solid black;
-   width: 100%;
-   padding: 5px;
-   margin-bottom: 15px;
-   border-radius: 2px;
-   font-size: 16px;
-   color: black;
-   font-family: 'Times New Roman', Times, serif;
+    background: rgb(105, 212, 223);
+    border: none;
+    outline: none;
+    border-bottom: 2px solid black;
+    width: 100%;
+    padding: 5px;
+    margin-bottom: 15px;
+    border-radius: 2px;
+    font-size: 16px;
+    color: black;
+    font-family: 'Times New Roman', Times, serif;
 }
 
 .container .form .form-input::placeholder{
-  color: rgb(86, 75, 75);
+   color: rgb(48, 43, 43);
 }
 
-.container .form .btn-send{
-   width: 48%;
-   margin-top: 7px;
-   margin-left: 5px;
-   float: left;
-   font-family: 'Times New Roman', Times, serif;
-   outline: none;
-   border-radius: 3px;
-   background: #ff851b;
-   font-size: 18px;
-   border: none;
-   color: #fff;
-   padding: 10px 0;
-   cursor: pointer;
-   transition: all .5s ease;
+
+.container .form .btn{
+    width: 47%;
+    margin-top: 7px;
+    font-family: 'Times New Roman', Times, serif;
+    outline: none;
+    border-radius: 3px;
+    font-size: 18px;
+    border: none;
+    padding: 10px 0;
+    cursor: pointer;
+    transition: all .5s ease;
+}
+#btn-clean{
+    float: right;
+    background: #9b9b8c;
+    color: black;
+}
+#btn-search{
+    float: left;
+    margin-right: 6px;
+    background: #eded99;
+    color: black;
 }
 
-.container .form .btn-clear{
-	width: 48%;
-	margin-left: 7px;
-	margin-top: 7px;
-	font-family: 'Times New Roman', Times, serif;
-	outline: none;
-	border-radius: 3px;
-	background: #ff851b;
-	font-size: 18px;
-	border: none;
-	color: #fff;
-	padding: 10px 0;
-	cursor: pointer;
-	transition: all .5s ease;
+#btn-search:hover{
+    background-color: #f2a15b;
+    color: white;
 }
 
-.container .form .btn-send:hover{
-   background-color: #fa8e2f;
+#btn-clean:hover{
+    background-color: #5d5c5a;
+    color: white;
+}
+
+/*Search result styles*/
+
+body{
+	height: 100vh;
+	background-color: #fFFFFF;
+	opacity: 1;
+	background-image:  radial-gradient(#008080 0.9500000000000001px, transparent 0.9500000000000001px), radial-gradient(#008080 0.9500000000000001px, #fFFFFF 0.9500000000000001px);
+	background-size: 38px 38px;
+	background-position: 0 0,19px 19px;
+}
+
+.main-table{
+	width: 60%;
+	margin: auto;
+	padding: 2em 0;
+}
+
+.table{
+	width: 100%;
+	display: table;
+}
+
+.header{
+	display: table-row;
+	font-weight: bold;
+	text-align: center;
+}
+
+.data{
+	display: table-row;
+	text-align: center;
+	font-size: 17px;
+	margin-bottom: 10px;
+}
+
+.rowH{
+	display: table-cell;
+	border: solid black;
+	border-width: thin;
+	padding: 5px;
+	background-color: #4c9e9e;
+	color: wheat;
+}
+
+.row{
+	display: table-cell;
+	border: solid black;
+	border-width: thin;
+	background-color: white;
+	padding: 5px;
 }

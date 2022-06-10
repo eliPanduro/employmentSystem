@@ -1,13 +1,25 @@
 @charset "ISO-8859-1";
 
+
+body{
+	height: 100vh;
+	background-color: #fFFFFF;
+	opacity: 1;
+	background-image:  radial-gradient(#008080 0.9500000000000001px, transparent 0.9500000000000001px), radial-gradient(#008080 0.9500000000000001px, #fFFFFF 0.9500000000000001px);
+	background-size: 38px 38px;
+	background-position: 0 0,19px 19px;
+}
+
 h1{
 	text-align: center;
 	font-style: italic;
+	margin-bottom: 0.5em;
 }
 
 .main-table{
 	width: 60%;
 	margin: auto;
+	padding-bottom: 2em;
 }
 
 .table{
@@ -15,7 +27,7 @@ h1{
 	display: table;
 }
 
-tr .header{
+.header{
 	display: table-row;
 	font-weight: bold;
 	text-align: center;
@@ -25,6 +37,7 @@ tr .header{
 	display: table-row;
 	text-align: center;
 	font-size: 17px;
+	margin-bottom: 10px;
 }
 
 .rowH{

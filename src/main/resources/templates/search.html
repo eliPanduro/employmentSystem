@@ -1,69 +1,46 @@
-<html lang="en" xmlns:theadh="http://www.thymeleaf.org">
-
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Search for an Employee</title>
-	<!-- Font Awesome for icons -->
-	<script src="https://kit.fontawesome.com/cf8f2989e3.js" crossorigin="anonymous"></script>
-	<!-- Google Fonts -->
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@300&display=swap" rel="stylesheet">
+<meta charset="ISO-8859-1">
+<title>Search employee</title>
+<link th:href="@{/css/searchStyles.css}" rel="stylesheet" type="text/css">
 </head>
-
 <body>
-	<!-- Header and search content -->
-	<header>
-		<h2 class="subtitle">Search for an Employee</h2>
-		<div>
-
-			<!-- Search form -->
-			<form th:action="@{/search}" method="GET">
-				<input type="search" placeholder="First name" aria-label="firstname"
-					th:value="${firstname}" name="fname">
-				<input type="search" placeholder="Last name" aria-label="lastname"
-					th:value="${lastname}" name="lname">
-				<input type="search" placeholder="Position" aria-label="position"
-					th:value="${position}" name="pos">
-				<button type="submit" th:text="Search"></button>
-				<button type="clear" th:text="Clean"></button>
-			</form>
-		</div>
-	</header>
+<div th:replace="fragments/navBar :: navbar"></div>
+	<div class="container">
+		<form class="form" th:action="@{/search}" method="GET">
+			<div>
+				<h1>Search employee</h1>
+			</div>
+			<input type="search" class="form-input" th:value="${firstname}" name="firstn" placeholder="First name">
+			<input type="search" class="form-input" th:value="${lastname}" name="lastn" placeholder="Last name">
+			<input type="search" class="form-input" th:value="${position}" name="position" placeholder="Position">
+			
+			<input type="submit" class="btn" id="btn-search" value="Search">
+			<input type="reset" class="btn" id="btn-clean" value="Clear">
+		</form>
+	</div>
 	
-	<!-- Search results -->
-	<main class="container">
-		<table class="table">
-			<thead>
-				<tr>
-					<th scope="col">UID</th>
-					<th scope="col">First name</th>
-					<th scope="col">Middle name</th>
-					<th scope="col">Last name</th>
-					<th scope="col">Position</th>
-					<th scope="col">Birth date</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr th:each="employee : ${list}">
-					<td th:text="${employee.id}" id="id"></td>
-					<td th:text="${employee.firstname}"></td>
-					<td th:text="${employee.middlename}"></td>
-					<td th:text="${employee.lastname}"></td>
-					<td th:text="${employee.position}"></td>
-					<td th:text="${employee.birthdate}"></td>
-				</tr>
-			</tbody>
-		</table>
-	</main>
-
-	<!-- footer -->
-	<footer>
-		<p class="copyright">Employment System © 2022</p>
-	</footer>
-	<!-- End - footer -->
+        <div class="main-table">
+            <div class="table">
+				<div class="header">
+					<div class="rowH">ID</div>
+					<div class="rowH">First Name</div>
+					<div class="rowH">Middle Name</div>
+					<div class="rowH">Last Name</div>
+					<div class="rowH">Position</div>
+					<div class="rowH">Birth date</div>
+				</div>
+				<div class="data" th:each="employee : ${listSearch}">
+					<div class="row" th:text="${employee.id}" id="id"></div>
+					<div class="row" th:text="${employee.firstname}"></div>
+					<div class="row" th:text="${employee.middlename}"></div>
+					<div class="row" th:text="${employee.lastname}"></div>
+					<div class="row" th:text="${employee.position}"></div>
+					<div class="row" th:text="${employee.birthdate}"></div>
+				</div>
+		</div>
+	</div>
 </body>
 
 </html>

@@ -8,7 +8,7 @@
 <body>
 <div th:replace="fragments/navBar :: navbar"></div>
 	<div class="container">
-		<form class="form" action="#" th:action="@{/save}" th:object="${employee}" method="post">
+		<form class="form" th:action="@{/save}" th:object="${employee}" method="post">
 			<div>
 				<h1>Add employee</h1>
 			</div>

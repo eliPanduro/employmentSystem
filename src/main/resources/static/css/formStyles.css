@@ -2,7 +2,9 @@
 
 /*THIS IS THE FORM*/
 .container{
+	display: flex;
 	padding-top: 16px;
+	padding-bottom: 15px;
 	background-color: #fFFFFF;
 	opacity: 1;
 	background-image:  radial-gradient(#008080 0.9500000000000001px, transparent 0.9500000000000001px), radial-gradient(#008080 0.9500000000000001px, #fFFFFF 0.9500000000000001px);
@@ -25,7 +27,7 @@ h1{
     max-width: 300px;
     margin: auto;
     padding: 2px 35px;
-    padding-bottom: 30px;
+    padding-bottom: 25px;
     border-radius: 5px;
 }
 .label{

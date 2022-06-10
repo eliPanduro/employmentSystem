@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -64,63 +63,28 @@ public class ControllerLayer {
 		return "addEmployee";
 	}
 
-	// Save the employee
+	// Save the employee if it passes all validations
 	@PostMapping(value = "/save")
 	public String saveEmployee(@ModelAttribute("employee") Employee employee) {
 		employeeService.save(employee);
 		return "redirect:/home";
 	}
 	
-	// Search form
-	/*@GetMapping("/searchForm")
-	public String searchForm(Model model) {
-		model.addAttribute("employee", new Employee());
-		return "search";
-	}*/
-	
-	/*@GetMapping("/searchEmployee")
-	public String searchEmployee(@RequestParam String firstName, @RequestParam String lastName, @RequestParam String position, Model model, @ModelAttribute("employees") Employee employees ) {
-			List<Employee> employee = employeeService.buscarByFirstNameAndLastNameAndPosition(firstName, lastName, position);*/
-
-			/*List<Employee> employees1 = service.buscarFirstName(firstName);
-			
-			List<Employee> employees2 = service.buscarLastName(lastName);
-			
-			List<Employee> employees3 = service.buscarPosition(position);
-			
-			List<Employee> resultList2 = new ArrayList<Employee>(employee);
-			
-			resultList2.addAll(employees1);
-			resultList2.addAll(employees2);
-			resultList2.addAll(employees3);
-			
-			
-			resultList2 = resultList2.stream().distinct().collect(Collectors.toList());
-			
-			
-			results=resultList2.size();*/
-			//model.addAttribute("employeest",resultList2);
-			
-		/*return "search";
-		
-	}*/
-	
-
-		// _______search the employee___________
-	@RequestMapping("/search/form")
+	//Search employee form
+	@RequestMapping("/searchForm")
 	public String searchForm() {
 		return "search";
 	}
 
-	// _______search the employee___________
+	//Call function to search the employee with the data and show it
 	@GetMapping("/search")
-	public String searchEmpl(Model model, String fname, String lname, String pos, RedirectAttributes redirAttrs) {
-		List<Employee> list = employeeService.findEmployee(fname, lname, pos);
-		if (list != null && list.isEmpty()) {
+	public String searchEmpl(Model model, String firstn, String lastn, String position, RedirectAttributes redirAttrs) {
+		List<Employee> listSearch = employeeService.findEmployee(firstn, lastn, position);
+		if (listSearch.isEmpty() && listSearch != null) {
 			redirAttrs.addFlashAttribute("empty", "0 results found.");
 			return "redirect:/home";
 		} else {
-			model.addAttribute("list", list);
+			model.addAttribute("listSearch", listSearch);
 			return "search";
 		}
 	}

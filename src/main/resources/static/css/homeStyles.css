@@ -1,0 +1,44 @@
+@charset "ISO-8859-1";
+
+/*Styles - home*/
+
+html, body {
+	width: 100%;
+	height: 100%;
+	min-height: 100vh;
+	background-color: #fFFFFF;
+	opacity: 1;
+	background-image:  radial-gradient(#008080 0.9500000000000001px, transparent 0.9500000000000001px), radial-gradient(#008080 0.9500000000000001px, #fFFFFF 0.9500000000000001px);
+	background-size: 38px 38px;
+	background-position: 0 0,19px 19px;
+}
+.container{
+	display: flex;
+}
+
+.container .image{
+	padding-top: 0.5em;
+	float: left;
+}
+
+.container .image img{
+	 max-width: 85%;
+	 max-height: 85%;
+	 display: block;
+	 margin: 0px auto;
+}
+
+.container .msg{
+	display: flex;
+	float:right;
+	align-items: center;
+	justify-content: center;
+}
+
+.container .msg pre{
+	font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+	font-weight: bold;
+	font-style: italic;
+	font-size: 2em;
+}
+
