@@ -12,18 +12,26 @@
 			<div>
 				<h1>Add employee</h1>
 			</div>
-			<label for="firstname">First name</label>
-			<input type="text" th:field="*{firstname}" class="form-input" id="firstname" name="firstname" placeholder="First name" required>
-
+			<div>
+			<label for="firstname"></label>
+			<input type="text" th:field="*{firstname}" class="form-input" id="firstname" name="firstname" placeholder="First name">
+			<p th:if="${#fields.hasErrors('firstname')}" th:errors="*{firstname}"></p>
+			</div>
+			
+			<label for="middlename"></label>
 			<input type="text" th:field="*{middlename}" class="form-input" id="middleName" name="middleName" placeholder="Middle name">
-						
-
-			<input type="text" th:field="*{lastname}" class="form-input" id="lastName" name="lastName" placeholder="Last name" required>
+			<p th:if="${#fields.hasErrors('middlename')}" th:errors="*{middlename}"></p>						
+			
+			<label for="lastname"></label>
+			<input type="text" th:field="*{lastname}" class="form-input" id="lastName" name="lastName" placeholder="Last name">
+			<p th:if="${#fields.hasErrors('lastname')}" th:errors="*{lastname}"></p>
 			
 			<label for="birthDate" class="label">Birth Date:</label>
 			<input type="date" th:field="*{birthdate}" class="form-input" id="birthDate" name="birthDate" required>
 			
-			<input type="text" th:field="*{position}" class="form-input" id="position" name="position" placeholder="Position" required>
+			<label for="position"></label>
+			<input type="text" th:field="*{position}" class="form-input" id="position" name="position" placeholder="Position">
+			<p th:if="${#fields.hasErrors('position')}" th:errors="*{position}"></p>
 			
 			<input type="submit" class="btn-send" value="Submit">
 		</form>

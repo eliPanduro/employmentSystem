@@ -71,3 +71,7 @@ h1{
     background-color: #f2a15b;
     color: white;
 }
+
+.form p{
+	color: red;
+}

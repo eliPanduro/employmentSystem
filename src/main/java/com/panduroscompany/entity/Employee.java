@@ -8,25 +8,35 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
 
 @Entity
 @Table(name = "employee")
-public class Employee {
+public class Employee{
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
+	@NotEmpty(message="First name is required")
+	@Pattern(regexp="[a-zA-Z ]{2,50}", message="First name must contain letters and/or space")
 	@Column(nullable = false)
 	private String firstname;
-
+	
+	@Pattern(regexp="[a-zA-Z ]{0,50}", message="Middle name Must contain letters and/or space")
 	private String middlename;
 
+	@NotEmpty(message="Last name is required")
+	@Pattern(regexp="[a-zA-Z ]{2,50}", message="Last name must contain letters and/or space")
 	@Column(nullable = false)
 	private String lastname;
 
 	@Column(nullable = false)
 	private Date birthdate;
 
+	@NotEmpty(message="Position is required")
+	@Pattern(regexp="[a-zA-Z ]{2,50}", message="Position must contain letters and/or space")
 	@Column(nullable = false)
 	private String position;
 

@@ -5,7 +5,6 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
-import java.time.temporal.Temporal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,8 +55,8 @@ public class EmployeeService {
 		}
 		return true;	
 	}*/
+	
 	public Boolean validationBirthdate(Date birthd) {
-		
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");  
 		String strBirth = dateFormat.format(birthd);
 		
@@ -65,7 +64,6 @@ public class EmployeeService {
 	    LocalDate currentDate = LocalDate.now();
 	    
 	    long numberOfDays = ChronoUnit.DAYS.between(birthdate, currentDate);
-	    System.out.println("Numero de dias: "+numberOfDays);
 	    if (numberOfDays < 6570) {//natural year (365) x 18
 	    	return false;
 	    }

@@ -1,6 +1,5 @@
 package com.panduroscompany.repositories;
 
-import java.sql.Date;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -13,9 +12,9 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long> {
 	// to search an employee by firstname, lastname and/or position
 	
 	/*@Query(value = "SELECT * FROM Employee "
-			+ "WHERE ( firstname = :firstname) OR (:firstname = '')"
-			+ "OR ( lastname = :lastname) OR (:lastname = '' ) "
-			+ "OR ( position = :position) OR (:position = '' ) ", nativeQuery = true)*/
+			+ "WHERE ( firstname = :firstname OR :firstname = '')"
+			+ "OR ( lastname = :lastname OR :lastname = '' ) "
+			+ "OR ( position = :position OR :position = '' ) ", nativeQuery = true)*/
 	
 	@Query(value = "SELECT * FROM Employee "
 			+ "WHERE ( firstname = :firstname OR :firstname = '' ) "
