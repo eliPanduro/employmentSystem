@@ -1,5 +1,6 @@
 package com.panduroscompany.controller;
 
+import java.sql.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,9 +66,18 @@ public class ControllerLayer {
 
 	// Save the employee if it passes all validations
 	@PostMapping(value = "/save")
-	public String saveEmployee(@ModelAttribute("employee") Employee employee) {
-		employeeService.save(employee);
-		return "redirect:/home";
+	public String saveEmployee(@ModelAttribute("employee") Employee employee, RedirectAttributes attribute) {
+		Date birthd = employee.getBirthdate();
+		
+		if(employeeService.validationBirthdate(birthd)) {
+			employeeService.save(employee);
+			attribute.addFlashAttribute("success", "Successfully saved");
+			return "redirect:/home";
+		}
+		else {
+			attribute.addFlashAttribute("error", "The birthday date entered is invalid");
+			return "redirect:/home";
+		}
 	}
 	
 	//Search employee form

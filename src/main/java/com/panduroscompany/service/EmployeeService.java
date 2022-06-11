@@ -1,5 +1,11 @@
 package com.panduroscompany.service;
 
+import java.sql.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+import java.time.temporal.Temporal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,17 +43,32 @@ public class EmployeeService {
 	/*functions to validate*/
 	
 	//validate that the employee doesn't exist yet
-	/*public Boolean existence(Employee emp) {
-		String firstname = emp.getFirstname();
+	//public Boolean existence(Employee emp) {
+		//We get entered data
+		/*String firstname = emp.getFirstname();
 		String middlename = emp.getMiddlename();
 		String lastname = emp.getLastname();
 		Date birthdate = emp.getBirthdate();
 		
-		Employee existingEmployee = employeeRepo.findExistingEmployee(firstname, middlename, lastname, birthdate);
-		if(existingEmployee == null) {
-			return true;
+		Employee existingEmployee = (Employee) employeeRepo.findExistingEmployee(firstname, middlename, lastname, birthdate);
+		if(existingEmployee == null) {//doesn't exists
+			return false;
 		}
-		return false;	
+		return true;	
 	}*/
-	
+	public Boolean validationBirthdate(Date birthd) {
+		
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");  
+		String strBirth = dateFormat.format(birthd);
+		
+		LocalDate birthdate = LocalDate.parse(strBirth);
+	    LocalDate currentDate = LocalDate.now();
+	    
+	    long numberOfDays = ChronoUnit.DAYS.between(birthdate, currentDate);
+	    System.out.println("Numero de dias: "+numberOfDays);
+	    if (numberOfDays < 6570) {//natural year (365) x 18
+	    	return false;
+	    }
+	    return true;
 	}
+}

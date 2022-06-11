@@ -69,4 +69,17 @@
 			</div>
 		</form>
 	</div>
+	<!-- MESSAGES -->
+	<div class="success-msg" th:if="${success != null}">
+		<label th:text="${success}"></label>
+	</div>
+	<div class="alert-msg" th:if="${error != null}">
+		<label th:text="${error}"></label>
+	</div>
+	<div class="warning-msg" th:if="${warning != null}">
+		<label th:text="${warning}"></label>
+	</div>
+	<div class="info-msg" th:if="${info != null}">
+		<label th:text="${info}"></label>
+	</div>
 </div>
