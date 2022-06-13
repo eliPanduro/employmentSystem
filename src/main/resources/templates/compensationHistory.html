@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Compensation history</title>
+<link th:href="@{/css/formStyles.css}" rel="stylesheet" type="text/css">
+</head>
+<body>
+        <div class="main-table">
+            <div class="table">
+				<div class="header">
+					<div class="rowH">ID</div>
+					<div class="rowH">Type</div>
+					<div class="rowH">Middle Name</div>
+					<div class="rowH">Last Name</div>
+					<div class="rowH">Position</div>
+					<div class="rowH">Birth date</div>
+					<div class="rowH">Compensation history</div>
+				</div>
+				<div class="data" th:each="compensation : ${compList}">
+					<div class="row" th:text="${#dates.year(compensation.datec)}" ></div>
+					<div class="row" th:text="${#dates.year(compensation.datec)}"></div>
+					<div class="row">
+						<div class="row" th:text="${compensation.amount}"></div>
+					</div>
+					
+				</div>
+		</div>
+	</div>
+</body>
+</html>

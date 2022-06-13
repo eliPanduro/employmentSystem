@@ -173,14 +173,11 @@ public class ControllerLayer {
 		}
 	}
 	
-	/*@GetMapping("/compensationHistory/{id}")
+	@GetMapping("/compensation/{id}")
 	public String viewCompensation(@PathVariable Long id, Model model) {
-		List<Compensation> compensations = compService.findCompensationsByEmployeeId(id); // obtain all compensations
-		double globalTotal = compService.getGlobalTotal(id); // get total
-		model.addAttribute("employee", employeeService.getInfoById(id));
-		model.addAttribute("total", globalTotal);
-		model.addAttribute("listComp", compensations);
+		List<Compensation> compList = compService.findCompensationById(id); //get all compensations
+		model.addAttribute("compList", compList);
 		return "compensationHistory";
-	}*/
+	}
 	
 }

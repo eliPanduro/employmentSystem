@@ -1,6 +1,6 @@
 package com.panduroscompany.repositories;
 
-import java.sql.Date;
+
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -11,26 +11,35 @@ import com.panduroscompany.entity.Compensation;
 
 public interface CompensationRepository extends JpaRepository<Compensation, Long> {
 	//To find if an employee with the same first name, middle name, last name and birth date already exists
-		@Query("SELECT comp FROM Compensation comp WHERE comp.type = ?1 AND comp.id_employee = ?2")
-		public Compensation findExistingSalary(String type, Long id_employee);
+	@Query("SELECT comp FROM Compensation comp WHERE comp.type = ?1 AND comp.id_employee = ?2")
+	public Compensation findExistingSalary(String type, Long id_employee);
 	
-	//find compensations by start date and end date of X employee
-	@Query(value="SELECT id, type, description, idEmployee, date, SUM(amount) as amount, MONTHNAME(date) as monthname, "
-			+ "YEAR(date) as yearname FROM Compensation WHERE date >= :startDate AND date < :endDate and idEmployee = :idEmployee "
-			+ "GROUP BY yearname, monthname ORDER by date asc", nativeQuery=true)
-	List<Compensation> findCompensationByDate(@Param("startDate") Date startDate, @Param("endDate") Date endDate, @Param("idEmployee") int idEmployee);
-
-	//find compensations grouped by year, month and totals of X employee
-	@Query(value="SELECT id, type, description, id_employee, datec, SUM(amount) as amount, MONTHNAME(datec) as monthname, "
-			+ "YEAR(date) as yearname FROM Compensation WHERE id_employee = :id_employee "
-			+ "GROUP BY yearname, monthname ORDER by date asc", nativeQuery=true)
-	List<Compensation> findCompensationsByEmployeeId(@Param("id_employee") Long id_employee);	
+	/*Extract no lo devuleve con nombre del mes - invalid sintaxis
+	 * @Query(value = "SELECT id, type, description, datec, id_employee, SUM(amount) as amount, "
+			+ "EXTRACT(YEAR FROM datec) AS year, EXTRACT(MONTH FROM datec) AS month "
+			+ "FROM Compensation WHERE id_employee = :id_employee "
+			+ "GROUP BY year, month ORDER BY datec ASC", nativeQuery=true)*/
+	
+	@Query(value="SELECT id, type, description, datec, id_employee, SUM(amount) AS amount,"
+			+ "YEAR(datec) AS year, MONTHNAME(datec) AS month "//monthname to convert month number to month name
+			+ "FROM Compensation WHERE id_employee = :id_employee AND "
+			+ "GROUP BY year, month ORDER by datec asc", nativeQuery=true)
+	List<Compensation> findCompensationsById(@Param("id_employee") Long id_employee);
+	
+	/*https://community.claris.com/en/s/question/0D50H00006h8yYuSAI/sql-how-to-order-by-calc-number-type
+	 * https://stackoverflow.com/questions/17271316/order-by-month-and-year-in-sql-with-sum*/
+	
+	//Get all employee compensation with id_employee	
+	/*@Query(value="SELECT id, type, description, datec, id_employee, SUM(amount) as amount, MONTHNAME(datec) as monthname, YEAR(datec) as year "
+				+ "FROM Compensation WHERE id_employee = :id_employee "
+				+ "GROUP BY year, monthname ORDER by datec asc", nativeQuery=true)*/
+		
 	
 	//get the global total 
 	@Query(value="SELECT SUM(amount) as total FROM Compensation WHERE id_employee = :id_employee", nativeQuery=true)
 	Float getTotal(@Param("id_employee") Long id_employee);
-	
-	//get compensations by month
-	@Query(value="SELECT * FROM Compensation WHERE MONTHNAME(date) = :month and idEmployee = :idEmployee and YEAR(date) = :year", nativeQuery=true)
-	List<Compensation> findByMonth(@Param("idEmployee") int idEmployee, @Param("month") String month, @Param("year") int year);
+	//find compensations in time range given by user
+		
+		
+		/*"SELECT id, type, amount, descriptiondatec SUM(amount) as total FROM Compensation WHERE id_employee =: id_employee AND date >= :fromDate AND date <= :toDate"*///In this I get sum for the user with the matches in this range
 }

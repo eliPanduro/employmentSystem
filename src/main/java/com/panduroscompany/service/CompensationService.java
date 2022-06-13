@@ -45,22 +45,17 @@ public class CompensationService {
 	
 	public Boolean isValidDateSalary(Compensation comp) {
 		Compensation cm = compRepo.findExistingSalary(comp.getType(), comp.getId_employee());
-		
 		if(cm == null) {
 			return true;
 		}
 		
 		Date dateMatch = cm.getDatec();
-		System.out.println("La fecha encontrada: "+dateMatch);
 		Date dateAdd = comp.getDatec();
-		System.out.println("La fecha agregada: "+dateAdd);
 
         SimpleDateFormat getFormat = new SimpleDateFormat("yyyy-MM");
         
         String dMatch = getFormat.format(dateMatch);
-        System.out.println("Año-mes de la encontrada: "+dMatch);
         String dAdd = getFormat.format(dateAdd);
-        System.out.println("Año-mes de la agregada: "+dAdd);
 		
         if(dMatch.equals(dAdd)) {
         	return false;
@@ -68,11 +63,14 @@ public class CompensationService {
         return true;
 	}
 	
-	public List<Compensation> findCompensationsByEmployeeId(Long id_employee) {
-		List<Compensation> list = compRepo.findCompensationsByEmployeeId(id_employee);
-		return list;
+	public List<Compensation> findCompensationById(Long id_employee) {
+		List<Compensation> compList = compRepo.findCompensationsById(id_employee);
+		if(compList != null && compList.isEmpty()) {
+			System.out.println("0 results");
+		}
+		return compList;
 	}
-
+	
 	public double getGlobalTotal(Long id_employee) {
 		double total = 0;
 		if (compRepo.getTotal(id_employee) != null) {
