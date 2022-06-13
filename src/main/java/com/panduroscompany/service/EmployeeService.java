@@ -31,6 +31,7 @@ public class EmployeeService {
 		return employeeRepo.findById(id).get();
 	}
 	
+	//Functions to search an employee and return the matches in a list
 	public List<Employee> findEmployee(String fname, String lname, String pos) {
 		List<Employee> employees = employeeRepo.findEmployee(fname, lname, pos);
 		if(employees != null && employees.isEmpty()) {
@@ -42,20 +43,14 @@ public class EmployeeService {
 	/*functions to validate*/
 	
 	//validate that the employee doesn't exist yet
-	//public Boolean existence(Employee emp) {
-		//We get entered data
-		/*String firstname = emp.getFirstname();
-		String middlename = emp.getMiddlename();
-		String lastname = emp.getLastname();
-		Date birthdate = emp.getBirthdate();
-		
-		Employee existingEmployee = (Employee) employeeRepo.findExistingEmployee(firstname, middlename, lastname, birthdate);
-		if(existingEmployee == null) {//doesn't exists
-			return false;
+	public Boolean validationExistingEmp(Employee employee) {
+		if(employeeRepo.findExistingEmployee(employee.getFirstname(), employee.getMiddlename(), employee.getLastname(), employee.getBirthdate()) != null) {
+			return true;//the employee already exists
 		}
-		return true;	
-	}*/
+		return false;
+	}
 	
+	//validate that there is approximately 18 years difference between the entered date and the current date
 	public Boolean validationBirthdate(Date birthd) {
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");  
 		String strBirth = dateFormat.format(birthd);

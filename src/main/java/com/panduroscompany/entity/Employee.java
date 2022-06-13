@@ -16,15 +16,15 @@ import javax.validation.constraints.Pattern;
 public class Employee{
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)//auto increment and new value with each insert operation
 	private Long id;
 
-	@NotEmpty(message="First name is required")
-	@Pattern(regexp="[a-zA-Z ]{2,50}", message="First name must contain letters and/or space")
+	@NotEmpty(message="First name is required")//Ensure data is added
+	@Pattern(regexp="[a-zA-Z ]{2,50}", message="First name must contain letters and/or space")//Ensure that the information entered has only letters and a minimum length of 2
 	@Column(nullable = false)
 	private String firstname;
 	
-	@Pattern(regexp="[a-zA-Z ]{0,50}", message="Middle name Must contain letters and/or space")
+	@Pattern(regexp="[a-zA-Z ]{0,50}", message="Middle name Must contain letters and/or space")//Ensure that the information entered has only letters
 	private String middlename;
 
 	@NotEmpty(message="Last name is required")

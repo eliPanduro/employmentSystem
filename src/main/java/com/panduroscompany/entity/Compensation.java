@@ -1,6 +1,7 @@
 package com.panduroscompany.entity;
 
 import java.sql.Date;
+import java.util.Optional;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,19 +19,32 @@ public class Compensation {
 	
 	@Column(nullable = false)
 	private String type;
-	
+
 	@Column(nullable = false)
 	private double amount;
-	
+
 	@Column(nullable = false)
 	private String description;
 	
 	@Column(nullable = false)
 	private Date datec;
-	
-	@Column(nullable = false)
-	private Long id_employee;
-	
+
+	public Long id_employee;
+
+	public Compensation(Long id, String type, double amount, String description, Date datec, Long id_employee) {
+		super();
+		this.id = id;
+		this.type = type;
+		this.amount = amount;
+		this.description = description;
+		this.datec = datec;
+		this.id_employee = id_employee;
+	}
+
+	public Compensation() {
+		super();
+	}
+
 	public Long getId() {
 		return id;
 	}
@@ -77,6 +91,10 @@ public class Compensation {
 
 	public void setId_employee(Long id_employee) {
 		this.id_employee = id_employee;
+	}
+
+	public Optional<Compensation> findById(Long idCompensation) {
+		return null;
 	}
 
 }

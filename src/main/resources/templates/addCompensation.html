@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Add new employee</title>
+<link th:href="@{/css/formStyles.css}" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div th:replace="fragments/navBar :: navbar"></div>
+	<div class="container">
+		<form class="form" th:action="@{/saveCompensation}" th:object="${compensation}" method="post">
+			<div>
+				<h1>Add Compensation</h1>
+			</div>
+			
+			<label for="type">Type</label>
+				<select class="form-control" id="type" th:field="*{type}">
+					<option value="Adjustment">Adjustment</option>
+					<option value="Allowance">Allowance</option>
+					<option value="Bonus">Bonus</option>
+					<option value="Commission">Commission</option>
+					<option value="Salary">Salary</option>
+				</select>
+				
+			<label for="id_employee"></label>
+				<input type="text" class="form-input" id="id_employee" th:field="*{id_employee}" readonly>
+			
+			<label for="amount">Amount</label>
+				<input type="number" class="form-input" id="amount" th:field="*{amount}" required>
+			
+			<label for="description">Description</label>
+				<textarea class="form-control" id="description" rows="3" th:field="*{description}"></textarea>
+				<small id="emailHelp" class="form-text text-muted">For Salary compensations, the description is optional.</small>
+			
+			<label for="datec">Date</label>
+					<input type="date" class="form-input" id="datec" th:field="*{datec}" required>
+			
+			<input type="submit" class="btn-send" value="Create">
+		</form>
+	</div>
+</body>
+</html>
