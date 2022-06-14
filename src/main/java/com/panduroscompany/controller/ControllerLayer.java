@@ -1,6 +1,7 @@
 package com.panduroscompany.controller;
 
 import java.sql.Date;
+import java.text.ParseException;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -15,7 +16,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.panduroscompany.entity.Compensation;
@@ -129,15 +129,50 @@ public class ControllerLayer {
 
 	// Edit an existing employee
 	@RequestMapping("/edit/{id}")
-	public ModelAndView formEditEmployee(@PathVariable(name = "id") Long id) {
-		ModelAndView modelView = new ModelAndView("editEmployee");
+	public String formEditEmployee(@PathVariable(name = "id") Long id, Model model) {
 		Employee employee = employeeService.getInfoById(id);
-		modelView.addObject("employee", employee);
-		return modelView;
+		model.addAttribute("employee", employee);
+		return "editEmployee";
+	}
+	
+	@PostMapping(value = "/update")
+	public String updateEmployee(@Valid @ModelAttribute("employee") Employee employee, BindingResult result, RedirectAttributes attribute) {
+		if(result.hasErrors()) {
+			return "addEmployee";
+		}//if there are no errors it will continue validating
+		
+		Employee actualInfo = employeeService.getInfoById(employee.getId());//I get all data employee
+		Date birthd = employee.getBirthdate();
+		
+		if(!employeeService.validationExistingEmp(employee)) {//Is diferent birthdate and name
+			if(employeeService.validationBirthdate(birthd)) {
+				employeeService.save(employee);
+				attribute.addFlashAttribute("success", "Successfully saved");
+				return "redirect:/home";
+			}
+			else {
+				attribute.addFlashAttribute("error", "Error! Birth date entered is invalid, you must be almost or over 18 years old");
+				return "redirect:/home";
+			}
+		}
+		if(actualInfo.getId().equals(employee.getId())){//Is the same employee
+			if(actualInfo.getPosition().equals(employee.getPosition())) {
+				attribute.addFlashAttribute("error", "Error! No changes were made");
+				return "redirect:/home";
+			}
+			else {
+				employeeService.save(employee);
+				attribute.addFlashAttribute("success", "Successfully saved");
+				return "redirect:/home";
+			}
+		}
+		attribute.addFlashAttribute("error", "Error! Employee already exists");
+		return "redirect:/home";	
 	}
 	
 	/*Compensation*/
 	
+	//Add compensation
 	@GetMapping("/addCompensation/{id}")
 	public String addCompensationForm(Model model, @PathVariable(name="id") Long id ) {
 		Compensation comp = new Compensation();
@@ -171,11 +206,21 @@ public class ControllerLayer {
 			attribute.addFlashAttribute("error", "Amount must be different from zero or greater than zero");
 			return "redirect:/home";
 		}
-	}
+	}//end add compensation
 	
+	//View compensation history
 	@GetMapping("/compensation/{id}")
 	public String viewCompensation(@PathVariable Long id, Model model) {
 		List<Compensation> compList = compService.findCompensationById(id); //get all compensations
+		model.addAttribute("employee", employeeService.getInfoById(id));
+		model.addAttribute("compList", compList);
+		return "compensationHistory";
+	}
+	
+	@GetMapping("/compensationHistory/{id}/range")
+	public String viewCompensationHistory(Model model, String startD, String endD, @PathVariable Long id) throws ParseException {
+		List<Compensation> compList = compService.findCompensationByDateRange(startD, endD, id); //get all compensations
+		model.addAttribute("employee", employeeService.getInfoById(id));
 		model.addAttribute("compList", compList);
 		return "compensationHistory";
 	}

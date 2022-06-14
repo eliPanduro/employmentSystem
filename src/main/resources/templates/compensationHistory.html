@@ -3,28 +3,41 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Compensation history</title>
-<link th:href="@{/css/formStyles.css}" rel="stylesheet" type="text/css">
+<link th:href="@{/css/compHistoryStyles.css}" rel="stylesheet" type="text/css">
 </head>
 <body>
-        <div class="main-table">
-            <div class="table">
-				<div class="header">
-					<div class="rowH">ID</div>
-					<div class="rowH">Type</div>
-					<div class="rowH">Middle Name</div>
-					<div class="rowH">Last Name</div>
-					<div class="rowH">Position</div>
-					<div class="rowH">Birth date</div>
-					<div class="rowH">Compensation history</div>
-				</div>
-				<div class="data" th:each="compensation : ${compList}">
-					<div class="row" th:text="${#dates.year(compensation.datec)}" ></div>
-					<div class="row" th:text="${#dates.year(compensation.datec)}"></div>
-					<div class="row">
-						<div class="row" th:text="${compensation.amount}"></div>
-					</div>
-					
-				</div>
+	<div th:replace="fragments/navBar :: navbar"></div>
+	
+	<!-- Employee profile information -->
+	<div class="subtitle">
+		<h2 class="msg-comp-h">This is <span th:text="${employee.firstname}"></span>'s compensation history</h2>
+	</div>
+	
+	<div class="container">
+		<form class="form" th:action="@{/compensationHistory/{id}/range(id=${employee.id})}" method="GET">
+			<div>
+				<h1>Date range</h1>
+			</div>
+			<input type="month" class="form-input" name="startD" placeholder="Start date">
+			<input type="month" class="form-input" name="endD" placeholder="End date">
+			
+			<input type="submit" class="btn" id="btn-search" value="Search">
+			<input type="reset" class="btn" id="btn-clean" value="Clear">
+		</form>
+	</div>
+	
+	<div class="main-table">
+		<div class="table">
+			<div class="header">
+				<div class="rowH">Year</div>
+				<div class="rowH">Month</div>
+				<div class="rowH">Amount</div>
+			</div>
+			<div class="data" th:each="compensation : ${compList}">
+				<div class="row" th:text="${#dates.year(compensation.datec)}"></div>
+				<div class="row" th:text="${#dates.month(compensation.datec)}"></div>
+				<div class="row" th:text="${compensation.amount}"></div>
+			</div>
 		</div>
 	</div>
 </body>

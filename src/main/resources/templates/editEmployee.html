@@ -8,7 +8,7 @@
 <body>
 	<div th:replace="fragments/navBar :: navbar"></div>
 	<div class="container">
-		<form class="form" action="#" th:action="@{/save}" th:object="${employee}" method="post">
+		<form class="form" th:action="@{/update}" th:object="${employee}" method="post">
 			<div>
 				<h1>Edit employee</h1>
 			</div>
@@ -26,14 +26,13 @@
 			<input type="text" th:field="*{lastname}" class="form-input" id="lastName" name="lastName">
 				
 			<label for="birthDate" class="label">Birth Date:</label>
-			<input type="text" th:field="*{birthdate}" class="form-input" id="birthDate" name="birthDate">
+			<input type="date" th:field="*{birthdate}" class="form-input" id="birthDate" name="birthDate">
 				
 			<label for="position" class="label">Position:</label>
 			<input type="text" th:field="*{position}" class="form-input" id="position" name="position">
 				
 			<div class="buttons">
 				<input type="submit" class="btn-send" value="Submit">
-				<input type="reset" class="btn-clear" value="Clear">
 			</div>
 		</form>
 	</div>

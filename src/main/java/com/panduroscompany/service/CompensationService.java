@@ -1,6 +1,7 @@
 package com.panduroscompany.service;
 
 import java.sql.Date;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
@@ -69,5 +70,17 @@ public class CompensationService {
 			System.out.println("0 results");
 		}
 		return compList;
+	}
+
+	public List<Compensation> findCompensationByDateRange(String startD, String endD, Long id) throws ParseException {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM");
+
+		java.util.Date date1 = sdf.parse(startD);
+		java.util.Date date2 = sdf.parse(endD);
+		java.sql.Date startDate = new Date(date1.getTime());
+		java.sql.Date endDate = new Date(date2.getTime());
+
+		// review dates entries to avoid errors
+		return compRepo.findCompensationByDate(startDate, endDate, id);
 	}
 }

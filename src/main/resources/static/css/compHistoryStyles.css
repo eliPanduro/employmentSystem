@@ -1,6 +1,6 @@
 @charset "ISO-8859-1";
 
-/*Styles - search form*/
+/*Form date range styles*/
 .container{
 	display: flex;
 	padding-top: 14px;
@@ -22,7 +22,7 @@ h1{
 
 .container .form{
 	background-color: rgb(105, 212, 223);
-    width: 90%;
+    width: 80%;
     max-width: 300px;
     margin: auto;
     padding: 2px 35px;
@@ -83,8 +83,7 @@ h1{
     color: white;
 }
 
-/*Search result styles*/
-
+/*styles table with results*/
 body{
 	height: 100vh;
 	background-color: #fFFFFF;
@@ -95,7 +94,7 @@ body{
 }
 
 .main-table{
-	width: 70%;
+	width: 40%;
 	margin: auto;
 	padding: 2em 0;
 }
