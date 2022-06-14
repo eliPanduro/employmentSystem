@@ -79,8 +79,10 @@ public class CompensationService {
 		java.util.Date date2 = sdf.parse(endD);
 		java.sql.Date startDate = new Date(date1.getTime());
 		java.sql.Date endDate = new Date(date2.getTime());
-
-		// review dates entries to avoid errors
+		
+		if(startDate.after(endDate)) {
+			return null;
+		}
 		return compRepo.findCompensationByDate(startDate, endDate, id);
 	}
 }

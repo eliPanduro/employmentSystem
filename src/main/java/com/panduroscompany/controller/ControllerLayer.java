@@ -210,16 +210,28 @@ public class ControllerLayer {
 	
 	//View compensation history
 	@GetMapping("/compensation/{id}")
-	public String viewCompensation(@PathVariable Long id, Model model) {
+	public String viewCompensation(@PathVariable Long id, Model model, RedirectAttributes attribute) {
 		List<Compensation> compList = compService.findCompensationById(id); //get all compensations
+		if(compList.isEmpty()) {
+			attribute.addFlashAttribute("warning", "Employee doesn't have compensations");
+			return "redirect:/home";
+		}
 		model.addAttribute("employee", employeeService.getInfoById(id));
 		model.addAttribute("compList", compList);
 		return "compensationHistory";
 	}
 	
 	@GetMapping("/compensationHistory/{id}/range")
-	public String viewCompensationHistory(Model model, String startD, String endD, @PathVariable Long id) throws ParseException {
+	public String viewCompensationHistory(Model model, String startD, String endD, @PathVariable Long id, RedirectAttributes attribute) throws ParseException {
 		List<Compensation> compList = compService.findCompensationByDateRange(startD, endD, id); //get all compensations
+		if(compList == null) {
+			attribute.addFlashAttribute("error", "End date that occurs before start date");
+			return "redirect:/home";
+		}
+		if(compList.isEmpty()) {
+			attribute.addFlashAttribute("warning", "Employee doesn't have compensations in this range");
+			return "redirect:/home";
+		}
 		model.addAttribute("employee", employeeService.getInfoById(id));
 		model.addAttribute("compList", compList);
 		return "compensationHistory";
