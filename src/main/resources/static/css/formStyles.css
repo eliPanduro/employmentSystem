@@ -48,6 +48,11 @@ h1{
     font-family: 'Times New Roman', Times, serif;
 }
 
+#description{
+	border: solid 1px black;
+	margin-bottom: 3px;
+}
+
 .container .form .form-input::placeholder{
    color: rgb(48, 43, 43);
 }

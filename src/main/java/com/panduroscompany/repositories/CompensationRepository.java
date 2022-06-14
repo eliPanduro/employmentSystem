@@ -14,12 +14,7 @@ public interface CompensationRepository extends JpaRepository<Compensation, Long
 	@Query("SELECT comp FROM Compensation comp WHERE comp.type = ?1 AND comp.id_employee = ?2")
 	public Compensation findExistingSalary(String type, Long id_employee);
 	
-	/*Extract no lo devuleve con nombre del mes - invalid sintaxis
-	 * @Query(value = "SELECT id, type, description, datec, id_employee, SUM(amount) as amount, "
-			+ "EXTRACT(YEAR FROM datec) AS year, EXTRACT(MONTH FROM datec) AS month "
-			+ "FROM Compensation WHERE id_employee = :id_employee "
-			+ "GROUP BY year, month ORDER BY datec ASC", nativeQuery=true)*/
-	
+	/*Extract no lo devuleve con nombre del mes - invalid sintaxis*/
 	@Query(value="SELECT id, type, description, datec, id_employee, SUM(amount) AS amount,"
 			+ "YEAR(datec) AS year, MONTHNAME(datec) AS month "//monthname to convert month number to month name
 			+ "FROM Compensation WHERE id_employee = :id_employee AND "
@@ -33,13 +28,4 @@ public interface CompensationRepository extends JpaRepository<Compensation, Long
 	/*@Query(value="SELECT id, type, description, datec, id_employee, SUM(amount) as amount, MONTHNAME(datec) as monthname, YEAR(datec) as year "
 				+ "FROM Compensation WHERE id_employee = :id_employee "
 				+ "GROUP BY year, monthname ORDER by datec asc", nativeQuery=true)*/
-		
-	
-	//get the global total 
-	@Query(value="SELECT SUM(amount) as total FROM Compensation WHERE id_employee = :id_employee", nativeQuery=true)
-	Float getTotal(@Param("id_employee") Long id_employee);
-	//find compensations in time range given by user
-		
-		
-		/*"SELECT id, type, amount, descriptiondatec SUM(amount) as total FROM Compensation WHERE id_employee =: id_employee AND date >= :fromDate AND date <= :toDate"*///In this I get sum for the user with the matches in this range
 }

@@ -37,7 +37,7 @@
    }
 .menu {
 	display: flex;
-	gap: 70px;
+	gap: 190px;
 	font-size: 18px;
    }
    .menu li:hover {
@@ -100,24 +100,41 @@
 }
 
 .btn-log-out {
-	margin-left: 5px;
-    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    font-family:'Times New Roman', Times, serif;
     outline: none;
-    border-radius: 3px;
     background: teal;
-    font-size: 16px;
+    font-size: large;
     border: none;
     color: #fff;
-    padding: 2px;
-	height: 30px;
-	width: 105px;
     cursor: pointer;
 }
 
-.button{
-	background-color: #fFFFFF;
-	opacity: 1;
-	background-image:  radial-gradient(#008080 0.9500000000000001px, transparent 0.9500000000000001px), radial-gradient(#008080 0.9500000000000001px, #fFFFFF 0.9500000000000001px);
-	background-size: 38px 38px;
-	background-position: 0 0,19px 19px;
+.btn-log-out:hover{
+	background-color:#4c9e9e;
+}
+
+/*Styles validation messages*/
+.validation-msg{
+	width: 100%;
+	height: 2em;
+}
+
+.validation-msg label{
+	font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+#success{
+	background-color: rgba(88, 177, 106, 0.826);
+}
+
+#alert{
+	background-color: rgba(240, 102, 102, 0.795);
+}
+
+#warning{
+	background-color: rgba(220, 216, 100, 0.831);
+}
+
+#info{
+	background-color: rgba(119, 180, 221, 0.826);
 }

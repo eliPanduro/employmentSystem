@@ -70,12 +70,4 @@ public class CompensationService {
 		}
 		return compList;
 	}
-	
-	public double getGlobalTotal(Long id_employee) {
-		double total = 0;
-		if (compRepo.getTotal(id_employee) != null) {
-			total = compRepo.getTotal(id_employee);
-		}
-		return total;
-	}
 }

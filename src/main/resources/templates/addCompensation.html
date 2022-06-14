@@ -13,7 +13,7 @@
 				<h1>Add Compensation</h1>
 			</div>
 			
-			<label for="type">Type</label>
+			<label for="type">Type: </label>
 				<select class="form-control" id="type" th:field="*{type}">
 					<option value="Adjustment">Adjustment</option>
 					<option value="Allowance">Allowance</option>
@@ -23,14 +23,14 @@
 				</select>
 				
 			<label for="id_employee"></label>
-				<input type="text" class="form-input" id="id_employee" th:field="*{id_employee}" readonly>
-			
+				<input type="text" class="form-input" id="id_employee" th:field="*{id_employee}" hidden>
+			<br><br>
 			<label for="amount">Amount</label>
 				<input type="number" class="form-input" id="amount" th:field="*{amount}" required>
 			
-			<label for="description">Description</label>
-				<textarea class="form-control" id="description" rows="3" th:field="*{description}"></textarea>
-				<small id="emailHelp" class="form-text text-muted">For Salary compensations, the description is optional.</small>
+			<label for="description">Description</label><br>
+				<textarea class="form-input" id="description" rows="3" th:field="*{description}"></textarea>
+				<small id="info-desc" class="form-text text-muted">For salary compensations, the description is optional.</small>
 			
 			<label for="datec">Date</label>
 					<input type="date" class="form-input" id="datec" th:field="*{datec}" required>

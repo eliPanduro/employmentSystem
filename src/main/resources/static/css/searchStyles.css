@@ -63,18 +63,18 @@ h1{
 }
 #btn-clean{
     float: right;
-    background: #9b9b8c;
+    background: #949487;
     color: black;
 }
 #btn-search{
     float: left;
     margin-right: 6px;
-    background: #eded99;
+    background: #f2a15b;
     color: black;
 }
 
 #btn-search:hover{
-    background-color: #f2a15b;
+    background-color: #f1b37e;
     color: white;
 }
 
