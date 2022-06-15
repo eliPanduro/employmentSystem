@@ -13,7 +13,7 @@
 	<div class="container">
 		
 		<!-- Edit compensation form -->
-		<form class="form" th:action="@{/updateCompensation}" th:object="${compensation}" method="post">
+		<form class="form" th:action="@{'/updateCompensation/' + ${compensation.id}}" th:object="${compensation}" method="post">
 			<div>
 				<h1>Edit compensation</h1>
 			</div>
@@ -27,7 +27,7 @@
 			<label for="amount" class="label">Amount:</label>
 			<input type="number" th:field="*{amount}" class="form-input" id="amount" name="amount">							
 				
-			<label for="description">Description</label><br>
+			<label for="description" class="label">Description</label><br>
 			<textarea class="form-input" id="description" rows="3" th:field="*{description}"></textarea>
 			<small id="info-desc">For salary compensations, the description is optional.</small>
 				

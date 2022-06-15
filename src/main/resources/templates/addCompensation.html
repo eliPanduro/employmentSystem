@@ -18,7 +18,7 @@
 				<h1>Add Compensation</h1>
 			</div>
 			
-			<label for="type">Type: </label>
+			<label for="type" class="label">Type: </label>
 				<select class="form-control" id="type" th:field="*{type}">
 					<option value="Adjustment">Adjustment</option>
 					<option value="Allowance">Allowance</option>
@@ -27,17 +27,17 @@
 					<option value="Salary">Salary</option>
 				</select>
 				
-			<label for="id_employee"></label>
+			<label for="id_employee" class="label"></label>
 				<input type="text" class="form-input" id="id_employee" th:field="*{id_employee}" hidden>
 			<br><br>
-			<label for="amount">Amount</label>
+			<label for="amount" class="label">Amount</label>
 				<input type="number" class="form-input" id="amount" th:field="*{amount}" required>
 			
-			<label for="description">Description</label><br>
+			<label for="description" class="label">Description</label><br>
 			<textarea class="form-input" id="description" rows="3" th:field="*{description}"></textarea>
-			<small id="info-desc">The description is optional for salary</small>
+			<small id="info-desc">The description is optional for salary</small><br><br>
 			
-			<label for="datec">Date</label>
+			<label for="datec" class="label">Date</label>
 					<input type="date" class="form-input" id="datec" th:field="*{datec}" required>
 			
 			<input type="submit" class="btn-send" value="Save">

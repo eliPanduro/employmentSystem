@@ -32,6 +32,7 @@ h1{
 }
 .label{
    font-style: italic;
+   color: #dba206;
 }
 
 .container .form .form-input{

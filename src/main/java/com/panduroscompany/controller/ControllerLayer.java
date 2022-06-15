@@ -82,16 +82,17 @@ public class ControllerLayer {
 		Date birthd = employee.getBirthdate();
 		
 		if(!employeeService.validationExistingEmp(employee)) {//If the employee doesn't exits
-			if(employeeService.validationBirthdate(birthd)) {
+			if(employeeService.validationBirthdate(birthd)) {//If the birth date is valid save employee
 				employeeService.save(employee);
 				attribute.addFlashAttribute("success", "Successfully saved");
 				return "redirect:/home";
 			}
-			else {
+			else {//Return to home page and shows an error message for the birth date
 				attribute.addFlashAttribute("error", "Error! Birth date entered is invalid, you must be almost or over 18 years old");
 				return "redirect:/home";
 			}
 		}
+		//Return to home page and shows an error message - employee exists
 		attribute.addFlashAttribute("error", "Error! Employee already exists");
 		return "redirect:/home";	
 	}
@@ -105,12 +106,15 @@ public class ControllerLayer {
 	//Call function to search the employee with the data and show it
 	@GetMapping("/search")
 	public String searchEmpl(Model model, String firstn, String lastn, String position, RedirectAttributes attribute) {
+		
+		//If the variables are empty there is no data to search
 		if(firstn.isEmpty() && lastn.isEmpty() && position.isEmpty()) {
 			attribute.addFlashAttribute("error", "Error! add at least one data to filter employees");
 			return "redirect:/home";
 		}
+		
 		List<Employee> listSearch = employeeService.findEmployee(firstn, lastn, position);
-		if (listSearch.isEmpty() && listSearch != null) {
+		if (listSearch.isEmpty() && listSearch != null) {//if no matches found
 			attribute.addFlashAttribute("warning", "0 results found");
 			return "redirect:/home";
 		} else {
@@ -144,23 +148,23 @@ public class ControllerLayer {
 		Employee actualInfo = employeeService.getInfoById(employee.getId());//I get all data employee
 		Date birthd = employee.getBirthdate();
 		
-		if(!employeeService.validationExistingEmp(employee)) {//Is diferent birthdate and name
-			if(employeeService.validationBirthdate(birthd)) {
+		if(!employeeService.validationExistingEmp(employee)) {//It's different birth date and name
+			if(employeeService.validationBirthdate(birthd)) {//Valid date of birth
 				employeeService.save(employee);
 				attribute.addFlashAttribute("success", "Successfully saved");
 				return "redirect:/home";
 			}
-			else {
+			else {//if returns false it's because the date of birth isn't valid
 				attribute.addFlashAttribute("error", "Error! Birth date entered is invalid, you must be almost or over 18 years old");
 				return "redirect:/home";
 			}
 		}
 		if(actualInfo.getId().equals(employee.getId())){//Is the same employee
-			if(actualInfo.getPosition().equals(employee.getPosition())) {
+			if(actualInfo.getPosition().equals(employee.getPosition())) {//Position doesn't change
 				attribute.addFlashAttribute("error", "Error! No changes were made");
 				return "redirect:/home";
 			}
-			else {
+			else {//There was a change in position
 				employeeService.save(employee);
 				attribute.addFlashAttribute("success", "Successfully saved");
 				return "redirect:/home";
@@ -170,7 +174,7 @@ public class ControllerLayer {
 		return "redirect:/home";	
 	}
 	
-	/*Compensation*/
+	/*-------------Compensation-------------*/
 	
 	//Add compensation
 	@GetMapping("/addCompensation/{id}")
@@ -182,12 +186,13 @@ public class ControllerLayer {
 		return "addCompensation";
 	}
 	
+	//Save compensation
 	@PostMapping("/saveCompensation")
 	public String saveCompensation(@ModelAttribute("compensation") Compensation compensation, Model model, RedirectAttributes attribute) {		
 		String type = compensation.getType();
 		
 		if(type.equals("Salary")) {
-			if(compService.isValidDateSalary(compensation)) {//if return true is valid
+			if(compService.isValidDateSalary(compensation)) {//if return true is valid, the employee doesn't have a salary in the same moth
 				compService.save(compensation);
 				attribute.addFlashAttribute("success", "Successfully saved");
 				return "redirect:/home";
@@ -200,33 +205,42 @@ public class ControllerLayer {
 			attribute.addFlashAttribute("success", "Successfully saved");
 			return "redirect:/home";
 		}
-		else {
+		else {//The amount is incorrect for the type of compensation
 			attribute.addFlashAttribute("error", "Amount must be different from zero or greater than zero");
 			return "redirect:/home";
 		}
-	}//end add compensation
+	}
 	
 	//View compensation history
 	@GetMapping("/compensation/{id}")
 	public String viewCompensation(@PathVariable Long id, Model model, RedirectAttributes attribute) {
 		List<Compensation> compList = compService.findCompensationById(id); //get all compensations
-		if(compList.isEmpty()) {
+		
+		if(compList.isEmpty()) {//If compensations aren't found for the employee - shows message
 			attribute.addFlashAttribute("warning", "Employee doesn't have compensations");
 			return "redirect:/home";
 		}
+		//If compensations are found for the employee, they are displayed
 		model.addAttribute("employee", employeeService.getInfoById(id));
 		model.addAttribute("compList", compList);
 		return "compensationHistory";
 	}
 	
+	//View compensation history in a date range
 	@GetMapping("/compensationHistory/{id}/range")
 	public String viewCompensationHistory(Model model, @PathVariable Long id, String startD, String endD, RedirectAttributes attribute) throws ParseException {
+		
+		//If the variables are empty there is no date range
+		if(startD.isEmpty() && endD.isEmpty()) {
+			attribute.addFlashAttribute("error", "To filter by date you must enter start date and end date");
+			return "redirect:/home";
+		}
 		List<Compensation> compList = compService.findCompensationByDateRange(startD, endD, id); //get all compensations
-		if(compList == null) {
+		if(compList == null) {//If the list returns null is because end date occurs before start date
 			attribute.addFlashAttribute("error", "End date that occurs before start date");
 			return "redirect:/home";
 		}
-		if(compList.isEmpty()) {
+		if(compList.isEmpty()) {//if the list is empty means that the employee doesn't have compensation in this date range
 			attribute.addFlashAttribute("warning", "Employee doesn't have compensations in this range");
 			return "redirect:/home";
 		}
@@ -235,6 +249,7 @@ public class ControllerLayer {
 		return "compensationHistory";
 	}
 	
+	//View compensation history details for a specific month
 	@GetMapping("/compensationHistory/{id}/details/{month}/{year}")
 	public String viewCompensationDetails(@PathVariable Long id, @PathVariable String month, @PathVariable int year, Model model) {
 		List <Compensation> compList = compService.findCompensationByMonth(id, month, year);
@@ -243,6 +258,7 @@ public class ControllerLayer {
 		return "compensationDetails";
 	}
 	
+	//Form to edit compensation
 	@RequestMapping("/compensationEdit/{id}")
 	public String formEditCompensation(@PathVariable(name = "id") Long id, Model model) {
 		Compensation compensation = compService.getInfoCompById(id);
@@ -250,34 +266,38 @@ public class ControllerLayer {
 		return "editCompensation";
 	}
 	
-	@PostMapping(value = "/updateCompensation")
+	//Edit compensation
+	@PostMapping(value = "/updateCompensation/{id}")
 	public String updateCompensation(@ModelAttribute("compensation") Compensation compensation, BindingResult result, RedirectAttributes attribute) {
 		String type = compensation.getType();
 		String desc = compensation.getDescription();
 		
-		if(!type.equals("Salary") && desc.isEmpty()) {
+		if(!type.equals("Salary") && desc.isEmpty()) {//If compensation isn't salary, description is required
 			attribute.addFlashAttribute("error", "The description is required");
-			return "@{'/compensationEdit/' + ${compensation.id}}";
+			return "redirect:/home";
 		}else {
 			Compensation actualComp = compService.getInfoCompById(compensation.getId());
-			if(type.equals("Salary")) {
+			if(type.equals("Salary")) {//we update changed data and save them
 				actualComp.setAmount(compensation.getAmount());
 				actualComp.setDescription(compensation.getDescription());
 				compService.save(actualComp);
-				attribute.addFlashAttribute("success", "Successfully saved");
+				attribute.addFlashAttribute("success", "Successfully modified");
 				return "redirect:/home";
 			}
-			if(compService.validateTypeAndAmount(compensation)) {//if return true
+			//If compensation isn't salary
+			if(compService.validateTypeAndAmount(compensation)) {//validate amount for the compensation type
+				//we update changed data and save them
 				actualComp.setAmount(compensation.getAmount());
 				actualComp.setDescription(compensation.getDescription());
 				compService.save(actualComp);
-				attribute.addFlashAttribute("success", "Successfully saved");
+				attribute.addFlashAttribute("success", "Successfully modified");
 				return "redirect:/home";
 			}
-			else {
+			else {//If return false the amount is wrong for this compensation type
 				attribute.addFlashAttribute("error", "Amount must be different from zero or greater than zero");
 				return "redirect:/home";
 			}
 		}
 	}
+
 }

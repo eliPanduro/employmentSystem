@@ -39,14 +39,16 @@
 			</div>
 			<!-- End rows with compensation data -->
 		</div>
+		<!-- Links to return to home or select another month -->
+		<div class="btn-select-month">
+			<a th:href="@{'/compensation/' + ${employee.id}}">Select month</a>
+		</div>
+		<div class="btn-ret-home">
+			<a th:href="@{/home}">Return home</a>
+		</div>
+		<!-- End links -->
 	</div>
 	<!-- End table to show compensation details -->
 	
-	<!-- Links to return to home or select another month -->
-	<div class="btn-options">
-		<a th:href="@{'/compensation/' + ${employee.id}}">Select month</a>
-		<a th:href="@{/home}">Return home</a>
-	</div>
-	<!-- End links -->
 </body>
 </html>

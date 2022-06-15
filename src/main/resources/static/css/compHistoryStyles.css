@@ -1,13 +1,43 @@
 @charset "ISO-8859-1";
 
-/*Styles links to return home*/
+/*Styles links to return home and select other month*/
+
+.btn-select-month, .btn-ret-home, .return {
+    align-items: center;
+	display: flex;
+	justify-content: center;
+    border-radius: 3px;
+	width: 25%;
+    padding: 4px;
+}
+
+.main-table .btn-ret-home a, .main-table .btn-select-month a, .return a{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    text-decoration: none;
+}
+
+.return{
+    border: solid 1px #dba206;
+    margin-bottom: 5px;
+    background-color: rgb(113, 103, 103);
+}
 .return a{
     font-size: large;
-    font-weight: bold;
-    color: black;
-    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    font-style: italic;
-    margin-bottom: 0.5em;
+    color: white;
+}
+
+.main-table .btn-select-month{
+	background-color: rgb(236, 231, 182);
+	border: solid 1px black;
+    margin-top: 10px;
+    margin-right: 10px;
+    float: left;
+}
+
+.main-table .btn-ret-home{
+	background-color: rgb(69, 201, 253);
+	border: solid 1px black;
+    margin-top: 10px;
 }
 
 /*Form date range styles*/
@@ -97,7 +127,7 @@ h1{
 }
 
 #btn-search:hover{
-    background-color: #f1b37e;
+    background-color: rgb(236, 174, 120);
     color: white;
 }
 
