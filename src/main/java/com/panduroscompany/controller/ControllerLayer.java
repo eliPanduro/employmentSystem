@@ -151,7 +151,7 @@ public class ControllerLayer {
 		if(!employeeService.validationExistingEmp(employee)) {//It's different birth date and name
 			if(employeeService.validationBirthdate(birthd)) {//Valid date of birth
 				employeeService.save(employee);
-				attribute.addFlashAttribute("success", "Successfully saved");
+				attribute.addFlashAttribute("success", "Successfully modified");
 				return "redirect:/home";
 			}
 			else {//if returns false it's because the date of birth isn't valid
@@ -166,7 +166,7 @@ public class ControllerLayer {
 			}
 			else {//There was a change in position
 				employeeService.save(employee);
-				attribute.addFlashAttribute("success", "Successfully saved");
+				attribute.addFlashAttribute("success", "Successfully modified");
 				return "redirect:/home";
 			}
 		}
