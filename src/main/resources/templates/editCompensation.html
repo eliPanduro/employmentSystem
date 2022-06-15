@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Edit employee</title>
+<!-- style sheet -->
+<link th:href="@{/css/formStyles.css}" rel="stylesheet" type="text/css">
+</head>
+<body>
+	<!-- Import logo, company name, menu and welcome message -->
+	<div th:replace="fragments/navBar :: navbar"></div>
+	
+	<div class="container">
+		
+		<!-- Edit compensation form -->
+		<form class="form" th:action="@{/updateCompensation}" th:object="${compensation}" method="post">
+			<div>
+				<h1>Edit compensation</h1>
+			</div>
+				
+			<label for="position" class="label">ID employee:</label>
+			<input type="text" th:field="*{id_employee}" class="form-input" id="id_employee" name="id_employee" readonly>
+				
+			<label for="type" class="label">Type:</label>
+			<input type="text" th:field="*{type}" class="form-input" id="type" name="type" readonly>
+				
+			<label for="amount" class="label">Amount:</label>
+			<input type="number" th:field="*{amount}" class="form-input" id="amount" name="amount">							
+				
+			<label for="description">Description</label><br>
+			<textarea class="form-input" id="description" rows="3" th:field="*{description}"></textarea>
+			<small id="info-desc">For salary compensations, the description is optional.</small>
+				
+			<label for="date" class="label">Date:</label>
+			<input type="date" th:field="*{datec}" class="form-input" id="date" name="date" readonly>
+				
+			<div class="buttons">
+				<input type="submit" class="btn-send" value="Submit">
+			</div>
+		</form>
+		<!-- End form -->
+	</div>
+
+</body>
+</html>

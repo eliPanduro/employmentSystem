@@ -3,15 +3,21 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Welcome to the system!</title>
+<!-- style sheet -->
 <link th:href="@{/css/homeStyles.css}" rel="stylesheet" type="text/css">
 </head>
 <body>
+	<!-- Import logo, company name, menu and welcome message -->
 	<div th:replace="fragments/navBar :: navbar"></div>
+	
+	<!-- Image and welcome message-->
 	<div class="main-container">
 		<div class="container">
+			<!-- Image -->
 			<div class="image">
 				<img src="img/welcomeHome.png"></img>
 			</div>
+			<!-- Message -->
 			<div class="msg">
 				<pre>Company founded in 1980.
 		
@@ -22,5 +28,6 @@ of services and a good work environment.
 			</div>
 		</div>
 	</div>
+	<!-- Image and welcome message-->
 </body>
 </html>

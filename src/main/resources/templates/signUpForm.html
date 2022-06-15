@@ -3,10 +3,12 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Registration</title>
+<!-- style sheet -->
 <link th:href="@{/css/registerStyles.css}" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
 </head>
 <body>
+	<!-- Icon and company name -->
 	<div class="main-bar">
 		<div class="icon">
 			<img src="img/icono.png"></img>
@@ -15,7 +17,11 @@
 			<img src="img/companyName.png"></img>
 		</div>
 	</div>
+	<!-- End icon and company name -->
+	
 	<div class="container">
+	
+		<!-- Sign up form -->
 		<form class="form" th:action="@{/registrationProcess}" method="post" th:object="${user}">
 			<div>
 				<h1>User registration</h1>
@@ -35,6 +41,8 @@
 
 			<input type="submit" class="btn-send" value="Sing Up">
 		</form>
+		<!-- End sign up form -->
+		
 	</div>
 </body>
 </html>

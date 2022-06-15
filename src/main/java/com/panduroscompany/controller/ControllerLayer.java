@@ -187,7 +187,6 @@ public class ControllerLayer {
 		String type = compensation.getType();
 		
 		if(type.equals("Salary")) {
-			System.out.println("Es salario");
 			if(compService.isValidDateSalary(compensation)) {//if return true is valid
 				compService.save(compensation);
 				attribute.addFlashAttribute("success", "Successfully saved");
@@ -197,7 +196,6 @@ public class ControllerLayer {
 			return "redirect:/home";
 		}
 		if(compService.validateTypeAndAmount(compensation)) {//if return true
-			System.out.println("Es diferente a salario");
 			compService.save(compensation);
 			attribute.addFlashAttribute("success", "Successfully saved");
 			return "redirect:/home";
@@ -245,4 +243,41 @@ public class ControllerLayer {
 		return "compensationDetails";
 	}
 	
+	@RequestMapping("/compensationEdit/{id}")
+	public String formEditCompensation(@PathVariable(name = "id") Long id, Model model) {
+		Compensation compensation = compService.getInfoCompById(id);
+		model.addAttribute("compensation", compensation);
+		return "editCompensation";
+	}
+	
+	@PostMapping(value = "/updateCompensation")
+	public String updateCompensation(@ModelAttribute("compensation") Compensation compensation, BindingResult result, RedirectAttributes attribute) {
+		String type = compensation.getType();
+		String desc = compensation.getDescription();
+		
+		if(!type.equals("Salary") && desc.isEmpty()) {
+			attribute.addFlashAttribute("error", "The description is required");
+			return "@{'/compensationEdit/' + ${compensation.id}}";
+		}else {
+			Compensation actualComp = compService.getInfoCompById(compensation.getId());
+			if(type.equals("Salary")) {
+				actualComp.setAmount(compensation.getAmount());
+				actualComp.setDescription(compensation.getDescription());
+				compService.save(actualComp);
+				attribute.addFlashAttribute("success", "Successfully saved");
+				return "redirect:/home";
+			}
+			if(compService.validateTypeAndAmount(compensation)) {//if return true
+				actualComp.setAmount(compensation.getAmount());
+				actualComp.setDescription(compensation.getDescription());
+				compService.save(actualComp);
+				attribute.addFlashAttribute("success", "Successfully saved");
+				return "redirect:/home";
+			}
+			else {
+				attribute.addFlashAttribute("error", "Amount must be different from zero or greater than zero");
+				return "redirect:/home";
+			}
+		}
+	}
 }

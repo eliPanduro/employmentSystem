@@ -3,10 +3,12 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Login Panduro's Company</title>
-<script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+<!-- style sheet -->
 <link th:href="@{/css/indexStyles.css}" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
 </head>
 <body>
+	<!-- First page displayed with options to login or register -->
 	<div class="main-box">
 		<div class="backg">
 			<img src="img/backgroundIndex.jpeg"></img>
@@ -28,6 +30,8 @@
 			<pre>Panduro's Company is more than a company that generates
 opportunities and growth, we are a family!</pre>
 		</div>
+		
+		<!-- links to login or register -->
 		<div class="log-reg">
 			<div class="reg">
 				<a th:href="@{/register}">Register</a>
@@ -38,6 +42,6 @@ opportunities and growth, we are a family!</pre>
 				<img src="img/icono.png"></img>
 		</div>
 		</div>
-	</div>
+		<!-- End first page displayed -->
 </body>
 </html>

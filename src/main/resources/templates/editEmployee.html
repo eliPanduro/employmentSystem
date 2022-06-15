@@ -3,11 +3,15 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Edit employee</title>
+<!-- style sheet -->
 <link th:href="@{/css/formStyles.css}" rel="stylesheet" type="text/css">
 </head>
 <body>
+	<!-- Import logo, company name, menu and welcome message -->
 	<div th:replace="fragments/navBar :: navbar"></div>
+	
 	<div class="container">
+		<!-- Edit employee form -->
 		<form class="form" th:action="@{/update}" th:object="${employee}" method="post">
 			<div>
 				<h1>Edit employee</h1>
@@ -35,6 +39,7 @@
 				<input type="submit" class="btn-send" value="Submit">
 			</div>
 		</form>
+		<!-- End form -->
 	</div>
 
 </body>

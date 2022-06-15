@@ -3,11 +3,16 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Add new employee</title>
+<!-- style sheet -->
 <link th:href="@{/css/formStyles.css}" rel="stylesheet" type="text/css">
 </head>
 <body>
+<!-- Import logo, company name, menu and welcome message -->
 <div th:replace="fragments/navBar :: navbar"></div>
+
 	<div class="container">
+	
+		<!-- Add employee form -->
 		<form class="form" th:action="@{/save}" th:object="${employee}" method="post">
 			<div>
 				<h1>Add employee</h1>
@@ -35,6 +40,8 @@
 			
 			<input type="submit" class="btn-send" value="Submit">
 		</form>
+		<!-- End form -->
+		
 	</div>
 </body>
 </html>

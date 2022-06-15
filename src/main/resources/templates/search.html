@@ -3,11 +3,16 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Search employee</title>
+<!-- style sheet -->
 <link th:href="@{/css/searchStyles.css}" rel="stylesheet" type="text/css">
 </head>
 <body>
+<!-- Import logo, company name, menu and welcome message -->
 <div th:replace="fragments/navBar :: navbar"></div>
+
 	<div class="container">
+	
+		<!-- Form to search by first name, last name and/or position -->
 		<form class="form" th:action="@{/search}" method="GET">
 			<div>
 				<h1>Search employee</h1>
@@ -19,10 +24,13 @@
 			<input type="submit" class="btn" id="btn-search" value="Search">
 			<input type="reset" class="btn" id="btn-clean" value="Clear">
 		</form>
+		<!-- End form to search -->
 	</div>
 	
         <div class="main-table">
             <div class="table">
+            
+            	<!-- Table header -->
 				<div class="header">
 					<div class="rowH">ID</div>
 					<div class="rowH">First Name</div>
@@ -34,6 +42,9 @@
 					<div class="rowH">Compensations</div>
 					<div class="rowH">Add compensation</div>
 				</div>
+				<!-- End table header -->
+				
+				<!-- Rows with employee information and options to edit, view and add compensation -->
 				<div class="data" th:each="employee : ${listSearch}">
 					<div class="row" th:text="${employee.id}" id="id"></div>
 					<div class="row" th:text="${employee.firstname}"></div>
@@ -61,6 +72,7 @@
 						</svg></a>
 	                 </div>
 				</div>
+				<!-- End rows with employee information and options -->
 		</div>
 	</div>
 </body>

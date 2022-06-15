@@ -1,27 +1,32 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-	<head>
-		<meta charset="ISO-8859-1">
-		<title>Add new employee</title>
-		<link th:href="@{/css/registrationStyles.css}" rel="stylesheet" type="text/css">
-	</head>
-	<body>
-		<div class="main-bar">
-			<div class="icon">
-				<img src="img/icono.png"></img>
-			</div>
-			<div class="nameCompany">
-				<img src="img/companyName.png"></img>
-			</div>
+<head>
+<meta charset="ISO-8859-1">
+<title>Add new employee</title>
+<!-- style sheet -->
+<link th:href="@{/css/registrationStyles.css}" rel="stylesheet" type="text/css">
+</head>
+<body>
+	<!-- Icon and name company -->
+	<div class="main-bar">
+		<div class="icon">
+			<img src="img/icono.png"></img>
 		</div>
-		<div class="success-message">
-			<h3>Your registration was completed successfully</h3>
+		<div class="nameCompany">
+			<img src="img/companyName.png"></img>
 		</div>
-		<div class="link-login">
-			<h4>
-				<a th:href="@{/login}">Click here to login</a>
-			</h4>
-		</div>
+	</div>
+	<!-- End icon and name company -->
 	
-	</body>
+	<!-- Success message -->
+	<div class="success-message">
+		<h3>Your registration was completed successfully</h3>
+	</div>
+	
+	<!-- link to login -->
+	<div class="link-login">
+		<h4><a th:href="@{/login}">Click here to login</a></h4>
+	</div>
+
+</body>
 </html>

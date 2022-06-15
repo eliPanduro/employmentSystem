@@ -1,5 +1,15 @@
 @charset "ISO-8859-1";
 
+/*Styles links to return home*/
+.return a{
+    font-size: large;
+    font-weight: bold;
+    color: black;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-style: italic;
+    margin-bottom: 0.5em;
+}
+
 /*Form date range styles*/
 .subtitle{
     width: 100%;
@@ -12,14 +22,6 @@
 	background-image:  radial-gradient(#008080 0.9500000000000001px, transparent 0.9500000000000001px), radial-gradient(#008080 0.9500000000000001px, #fFFFFF 0.9500000000000001px);
 	background-size: 38px 38px;
 	background-position: 0 0,19px 19px;    
-}
-.return a{
-    font-size: large;
-    font-weight: bold;
-    color: black;
-    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    font-style: italic;
-    margin-bottom: 0.5em;
 }
 
 .container{
