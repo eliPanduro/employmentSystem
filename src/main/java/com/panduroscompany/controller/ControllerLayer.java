@@ -222,7 +222,7 @@ public class ControllerLayer {
 	}
 	
 	@GetMapping("/compensationHistory/{id}/range")
-	public String viewCompensationHistory(Model model, String startD, String endD, @PathVariable Long id, RedirectAttributes attribute) throws ParseException {
+	public String viewCompensationHistory(Model model, @PathVariable Long id, String startD, String endD, RedirectAttributes attribute) throws ParseException {
 		List<Compensation> compList = compService.findCompensationByDateRange(startD, endD, id); //get all compensations
 		if(compList == null) {
 			attribute.addFlashAttribute("error", "End date that occurs before start date");
@@ -235,6 +235,14 @@ public class ControllerLayer {
 		model.addAttribute("employee", employeeService.getInfoById(id));
 		model.addAttribute("compList", compList);
 		return "compensationHistory";
+	}
+	
+	@GetMapping("/compensationHistory/{id}/details/{month}/{year}")
+	public String viewCompensationDetails(@PathVariable Long id, @PathVariable String month, @PathVariable int year, Model model) {
+		List <Compensation> compList = compService.findCompensationByMonth(id, month, year);
+		model.addAttribute("employee", employeeService.getInfoById(id));
+		model.addAttribute("compList", compList);
+		return "compensationDetails";
 	}
 	
 }

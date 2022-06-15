@@ -85,4 +85,8 @@ public class CompensationService {
 		}
 		return compRepo.findCompensationByDate(startDate, endDate, id);
 	}
+
+	public List<Compensation> findCompensationByMonth(Long id, String month, int year) {
+		return compRepo.findDetailsByMonth(id, month, year);
+	}
 }
